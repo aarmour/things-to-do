@@ -25,7 +25,7 @@
   "defaults": {
     "prefix": "ttd",
     "sourceDir": "src",
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "lazyRoutePrefix": "+"
   }
