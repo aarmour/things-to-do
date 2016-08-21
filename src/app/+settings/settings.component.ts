@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-settings',
+  selector: 'ttd-settings',
   templateUrl: 'settings.component.html',
   styleUrls: ['settings.component.css']
 })

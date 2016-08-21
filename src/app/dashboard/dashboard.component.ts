@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-dashboard',
+  selector: 'ttd-dashboard',
   templateUrl: 'dashboard.component.html',
   styleUrls: ['dashboard.component.css']
 })
