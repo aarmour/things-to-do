@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
+import { SearchComponent } from './search/search.component';
 
 const dashboardRoutes: Routes = [
   {
@@ -10,7 +11,13 @@ const dashboardRoutes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'search',
+        component: SearchComponent
+      }
+    ]
   }
 ];
 
