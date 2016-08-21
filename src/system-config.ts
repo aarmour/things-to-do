@@ -45,6 +45,8 @@ const barrels: string[] = [
   'app/dashboard/events/event-detail',
   'app/dashboard/events/event-create',
   'app/dashboard/events/event-search',
+  'app/shared/mapbox',
+  'app/shared/mapbox/map',
   /** @cli-barrel */
 ];
 

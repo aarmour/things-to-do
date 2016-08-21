@@ -10,6 +10,7 @@
   {{/unless}}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.22.1/mapbox-gl.css" />
 </head>
 <body>
   <ttd-root>Loading...</ttd-root>
@@ -17,6 +18,8 @@
     {{#each scripts.polyfills}}
     <script src="{{.}}"></script>
     {{/each}}
+    {{!-- TODO: load via SystemJS once mapbox-gl supports it --}}
+    <script src="vendor/mapbox-gl/dist/mapbox-gl.js"></script>
     <script>
       System.import('system-config.js').then(function () {
         System.import('main');

@@ -9,10 +9,12 @@ import {
   EventDetailComponent,
   EventSearchComponent
 } from './events';
+import { MapboxModule } from '../shared';
 
 @NgModule({
   imports: [
     CommonModule,
+    MapboxModule,
     dashboardRouting
   ],
   declarations: [

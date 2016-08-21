@@ -1,6 +1,9 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { AppModule } from './app';
+import { AppModule, environment } from './app';
+import { setAccessToken as setMapboxAccessToken } from './app/shared/mapbox';
+
+setMapboxAccessToken(environment.mapbox.accessToken);
 
 // TODO: switch to static bootstrapping with the Ahead-Of-Time (AOT) compiler
 // once angular-cli supports it.
