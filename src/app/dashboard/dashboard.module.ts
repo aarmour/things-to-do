@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardComponent } from './dashboard.component';
 import { dashboardRouting } from './dashboard.routing';
+import {
+  EventListComponent,
+  EventDetailComponent
+} from './events';
+import { SearchComponent } from './search';
 
 @NgModule({
   imports: [
@@ -10,7 +15,10 @@ import { dashboardRouting } from './dashboard.routing';
     dashboardRouting
   ],
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    EventListComponent,
+    EventDetailComponent,
+    SearchComponent
   ]
 })
 export class DashboardModule {}
