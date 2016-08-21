@@ -1,9 +1,7 @@
-import { bootstrap } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
-import { AppComponent, environment } from './app/';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-if (environment.production) {
-  enableProdMode();
-}
+import { AppModule } from './app';
 
-bootstrap(AppComponent);
+// TODO: switch to static bootstrapping with the Ahead-Of-Time (AOT) compiler
+// once angular-cli supports it.
+platformBrowserDynamic().bootstrapModule(AppModule);
