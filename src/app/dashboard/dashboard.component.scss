@@ -1,0 +1,22 @@
+@import 'src/scss/variables';
+
+$dashboard-sidebar-width: 380px;
+
+:host {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+
+  @media(min-width: $screen-desktop) {
+    flex: 0 0 $dashboard-sidebar-width;
+  }
+}
+
+.content {
+
+  @media(min-width: $screen-desktop) {
+    flex: 1;
+  }
+}

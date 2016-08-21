@@ -1,9 +1,11 @@
-<mb-map
-  [mbStyle]="'mapbox://styles/mapbox/streets-v9'"
-  [width]="500"
-  [height]="500"
-  [longitude]="-105"
-  [latitude]="39"
-  [zoom]="5"
-></mb-map>
-<router-outlet></router-outlet>
+<aside class="sidebar">
+  <router-outlet></router-outlet>
+</aside>
+<div class="content">
+  <mb-map
+    [mbStyle]="'mapbox://styles/mapbox/streets-v9'"
+    [longitude]="-105"
+    [latitude]="39"
+    [zoom]="5"
+  ></mb-map>
+</div>
