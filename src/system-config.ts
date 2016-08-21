@@ -43,6 +43,8 @@ const barrels: string[] = [
   'app/dashboard/events',
   'app/dashboard/events/event-list',
   'app/dashboard/events/event-detail',
+  'app/dashboard/events/event-create',
+  'app/dashboard/events/event-search',
   /** @cli-barrel */
 ];
 

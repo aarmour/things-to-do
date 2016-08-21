@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { dashboardRouting } from './dashboard.routing';
 import {
+  EventCreateComponent,
   EventListComponent,
-  EventDetailComponent
+  EventDetailComponent,
+  EventSearchComponent
 } from './events';
-import { SearchComponent } from './search';
 
 @NgModule({
   imports: [
@@ -16,9 +17,10 @@ import { SearchComponent } from './search';
   ],
   declarations: [
     DashboardComponent,
+    EventCreateComponent,
     EventListComponent,
     EventDetailComponent,
-    SearchComponent
+    EventSearchComponent
   ]
 })
 export class DashboardModule {}

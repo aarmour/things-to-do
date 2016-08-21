@@ -3,11 +3,11 @@
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { addProviders, async, inject } from '@angular/core/testing';
-import { SearchComponent } from './search.component';
+import { EventSearchComponent } from './event-search.component';
 
-describe('Component: Search', () => {
+describe('Component: EventSearch', () => {
   it('should create an instance', () => {
-    let component = new SearchComponent();
+    let component = new EventSearchComponent();
     expect(component).toBeTruthy();
   });
 });
