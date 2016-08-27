@@ -1,7 +1,8 @@
 import {
   Component,
-  ElementRef,
+  EventEmitter,
   Input,
+  Output,
   Type
 } from '@angular/core';
 declare const mapboxgl: any;
@@ -19,7 +20,7 @@ export class MapComponent {
 
   private containerId: string;
   private element: any;
-  private map: Object;
+  private map: any;
 
   @Input('mbStyle') style: string;
   @Input() width: number;
@@ -27,17 +28,26 @@ export class MapComponent {
   @Input() latitude: number = 0;
   @Input() longitude: number = 0;
   @Input() zoom: number = 12;
+  @Output() moveend: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     this.containerId = `mb-map-${MapComponent.id++}`;
   }
 
   ngOnChange() {
+    if (!this.map) return;
 
+    const map = this.map;
+
+    const center = map.getCenter();
+    if (center.lng !== this.longitude && center.lat !== this.latitude) map.setCenter([this.longitude, this.latitude]);
+
+    if (map.getZoom() !== this.zoom) map.setZoom(this.zoom);
   }
 
   ngAfterViewInit() {
     this.map = this.createMap();
+    this.registerEventHandlers();
   }
 
   private createMap() {
@@ -47,6 +57,13 @@ export class MapComponent {
       center: [this.longitude, this.latitude],
       zoom: this.zoom
     });
+  }
+
+  private registerEventHandlers() {
+    this.map.on('moveend', () => this.moveend.emit({
+      center: this.map.getCenter(),
+      zoom: this.map.getZoom()
+    }));
   }
 
   private getStyles() {

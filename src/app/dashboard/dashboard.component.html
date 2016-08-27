@@ -1,16 +1,17 @@
 <aside class="sidebar">
   <ttd-toolbar>
-    <a routerLink="/dashboard/events" routerLinkActive="active">Home</a>
-    <a routerLink="/dashboard/events/new" routerLinkActive="active">New event</a>
-    <a routerLink="/dashboard/events/search" routerLinkActive="active">Find an event</a>
+    <a [routerLink]="['./events']">Home</a>
+    <a [routerLink]="['./events/new']" routerLinkActive="active">New event</a>
+    <a [routerLink]="['./events/search']" routerLinkActive="active">Find an event</a>
   </ttd-toolbar>
   <router-outlet></router-outlet>
 </aside>
 <div class="content">
   <mb-map
     [mbStyle]="'mapbox://styles/mapbox/streets-v9'"
-    [longitude]="-105"
-    [latitude]="39"
-    [zoom]="5"
+    [longitude]="mapCenter.longitude"
+    [latitude]="mapCenter.latitude"
+    [zoom]="mapZoom"
+    (moveend)="onMapMoveend($event)"
   ></mb-map>
 </div>
