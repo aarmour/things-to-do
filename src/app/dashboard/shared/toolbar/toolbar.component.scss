@@ -1,0 +1,7 @@
+$toolbar-width: 48px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: $toolbar-width;
+}

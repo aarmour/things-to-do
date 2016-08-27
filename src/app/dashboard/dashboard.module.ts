@@ -9,6 +9,7 @@ import {
   EventDetailComponent,
   EventSearchComponent
 } from './events';
+import { ToolbarComponent } from './shared';
 import { MapboxModule } from '../shared';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MapboxModule } from '../shared';
     EventCreateComponent,
     EventListComponent,
     EventDetailComponent,
-    EventSearchComponent
+    EventSearchComponent,
+    ToolbarComponent
   ]
 })
 export class DashboardModule {}
