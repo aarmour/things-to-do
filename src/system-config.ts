@@ -53,6 +53,7 @@ const barrels: string[] = [
   'app/shared/mapbox',
   'app/shared/mapbox/map',
   'app/shared/autocomplete',
+  'app/shared/mapbox/geocoder',
   /** @cli-barrel */
 ];
 

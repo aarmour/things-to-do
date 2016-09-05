@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http'
 
 import { AutocompleteComponent } from './autocomplete';
-import { GeocoderService } from './mapbox/geocoder.service';
+import { GeocoderComponent, GeocoderService } from './mapbox/geocoder';
 import { MapComponent } from './mapbox/map';
 
 @NgModule({
@@ -15,6 +15,7 @@ import { MapComponent } from './mapbox/map';
   ],
   declarations: [
     AutocompleteComponent,
+    GeocoderComponent,
     MapComponent
   ],
   providers: [
@@ -22,6 +23,7 @@ import { MapComponent } from './mapbox/map';
   ],
   exports: [
     AutocompleteComponent,
+    GeocoderComponent,
     MapComponent
   ]
 })

@@ -1,2 +1,2 @@
-export * from './geocoder.service';
+export * from './geocoder';
 export * from './map';
