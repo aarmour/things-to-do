@@ -1,7 +1,7 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule, environment } from './app';
-import { setAccessToken as setMapboxAccessToken } from './app/shared/mapbox';
+import { setMapboxAccessToken } from './app/shared';
 
 setMapboxAccessToken(environment.mapbox.accessToken);
 

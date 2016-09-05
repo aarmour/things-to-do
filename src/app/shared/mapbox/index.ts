@@ -1,2 +1,2 @@
-export * from './mapbox.module';
+export * from './geocoder.service';
 export * from './map';
