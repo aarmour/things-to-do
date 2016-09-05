@@ -51,6 +51,7 @@ const barrels: string[] = [
   'app/shared',
   'app/shared/mapbox',
   'app/shared/mapbox/map',
+  'app/shared/autocomplete',
   /** @cli-barrel */
 ];
 

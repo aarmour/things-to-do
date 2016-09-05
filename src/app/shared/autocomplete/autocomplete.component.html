@@ -1,0 +1,10 @@
+<input
+  type="search"
+  autocomplete="off"
+  [placeholder]="placeholder"
+  [(ngModel)]="value"
+  (blur)="onBlur()"
+>
+<ul>
+  <li *ngFor="let item of items | async">{{item}}</li>
+</ul>

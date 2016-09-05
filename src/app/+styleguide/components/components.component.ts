@@ -1,4 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+const FRUITS = [
+  'Apple',
+  'Banana',
+  'Canteloupe',
+  'Grape',
+  'Kiwi',
+  'Orange',
+  'Pear',
+  'Pineapple',
+  'Watermelon'
+];
 
 @Component({
   moduleId: module.id,
@@ -8,9 +21,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComponentsComponent implements OnInit {
 
-  constructor() { }
+  private autoCompleteSearchValue: string = '';
+  private autoCompleteItems = new BehaviorSubject<string[]>(FRUITS);
+
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  onSearchValueChange(newValue) {
+    this.autoCompleteSearchValue = newValue;
+    this.autoCompleteItems.next(this.searchFruits(newValue));
+  }
+
+  private searchFruits(query) {
+    if (!query) return FRUITS;
+    return FRUITS.filter(fruit => fruit.toLowerCase().indexOf(query.toLowerCase()) !== -1);
   }
 
 }

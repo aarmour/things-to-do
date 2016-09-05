@@ -1,1 +1,12 @@
 <h2>Components</h2>
+
+<section>
+  <h1>Autocomplete</h1>
+  <ttd-autocomplete
+    [ngModel]="autoCompleteSearchValue"
+    (ngModelChange)="onSearchValueChange($event)"
+    [items]="autoCompleteItems"
+  >
+  </ttd-autocomplete>
+  {{autoCompleteSearchValue}}
+</section>

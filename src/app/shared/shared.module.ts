@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { AutocompleteComponent } from './autocomplete';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   declarations: [
+    AutocompleteComponent
   ],
   exports: [
+    AutocompleteComponent
   ]
 })
 export class SharedModule { }
