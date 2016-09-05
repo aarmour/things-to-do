@@ -7,6 +7,7 @@
     (ngModelChange)="onSearchValueChange($event)"
     [items]="autoCompleteItems"
   >
+    <template #item let-item="item">{{item}}</template>
   </ttd-autocomplete>
   {{autoCompleteSearchValue}}
 </section>

@@ -2,12 +2,14 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ContentChild,
   EventEmitter,
   forwardRef,
   Input,
   OnDestroy,
   OnInit,
-  Output
+  Output,
+  TemplateRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -50,6 +52,8 @@ export class AutocompleteComponent implements ControlValueAccessor, OnDestroy, O
   @Input() placeholder: string = '';
   @Output() searchTextChange: EventEmitter<any> = new EventEmitter();
   @Output() selectedItemChange: EventEmitter<any> = new EventEmitter();
+
+  @ContentChild(TemplateRef) itemTemplate: TemplateRef<any>;
 
   constructor(private changeDetector: ChangeDetectorRef) { }
 

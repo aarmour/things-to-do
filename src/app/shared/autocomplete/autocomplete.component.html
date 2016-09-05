@@ -6,9 +6,17 @@
   (blur)="onBlur()"
   (keyup)="onKeyup($event.keyCode)"
 >
-<ul>
-  <li *ngFor="let item of items | async; let i = index">{{item}}</li>
-</ul>
+<div
+  *ngFor="let item of items | async; let i = index"
+  [class.active]="i === focusedItem"
+  class="item"
+>
+  <template
+    [ngTemplateOutlet]="itemTemplate"
+    [ngOutletContext]="{item: item}"
+  >
+  </template>
+</div>
 <div>Count: {{itemCount}}</div>
 <div>Focused item: {{itemsArray[focusedItem]}}</div>
 <div>Focused item index: {{focusedItem}}</div>

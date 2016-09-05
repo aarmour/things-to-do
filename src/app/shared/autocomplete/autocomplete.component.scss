@@ -1,0 +1,10 @@
+$autocomplete-padding-x: 20px;
+$autocomplete-padding-y: 15px;
+
+.item {
+  padding: $autocomplete-padding-y $autocomplete-padding-x;
+
+  &.active {
+    background-color: #ccc;
+  }
+}
