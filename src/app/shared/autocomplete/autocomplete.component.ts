@@ -53,6 +53,8 @@ export class AutocompleteComponent implements ControlValueAccessor, OnDestroy, O
   constructor() { }
 
   ngOnInit() {
+    if (!this.items) throw new Error(`The 'items' input is required!`);
+
     this.itemsSub = this.items.subscribe(items => {
       this.itemsArray = items;
       this.itemCount = items.length
