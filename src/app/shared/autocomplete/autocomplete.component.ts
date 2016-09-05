@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   forwardRef,
@@ -50,7 +51,7 @@ export class AutocompleteComponent implements ControlValueAccessor, OnDestroy, O
   @Output() searchTextChange: EventEmitter<any> = new EventEmitter();
   @Output() selectedItemChange: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor(private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
     if (!this.items) throw new Error(`The 'items' input is required!`);
@@ -59,6 +60,7 @@ export class AutocompleteComponent implements ControlValueAccessor, OnDestroy, O
       this.itemsArray = items;
       this.itemCount = items.length
       this.clearFocusedItem();
+      this.changeDetector.markForCheck();
     });
   }
 
