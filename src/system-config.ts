@@ -39,6 +39,7 @@ const barrels: string[] = [
   'app/+settings/profile',
   'app/+styleguide',
   'app/+styleguide/components',
+  'app/core',
   'app/dashboard',
   'app/dashboard/events',
   'app/dashboard/events/event-create',
