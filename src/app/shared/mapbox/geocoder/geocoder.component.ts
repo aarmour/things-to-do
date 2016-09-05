@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/switchMap';
 
 import { GeocoderService } from './geocoder.service';
@@ -26,6 +27,7 @@ export class GeocoderComponent implements OnInit {
     this.items = <Subject<string[]>>this.queryStream
       .debounceTime(DEBOUNCE_TIME)
       .distinctUntilChanged()
+      .filter((query: string) => !!query.trim().length)
       .switchMap((query: string) => this.geocoderService.geocode(query)
         .map(result => result.features
           .map(feature => feature.place_name)));
