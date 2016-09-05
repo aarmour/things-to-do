@@ -4,11 +4,14 @@ import {
   EventEmitter,
   forwardRef,
   Input,
+  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+
+import { KeyCode } from '../../core';
 
 const noop = () => {};
 
@@ -26,13 +29,22 @@ export const AUTOCOMPLETE_CONTROL_VALUE_ACCESSOR: any = {
   providers: [AUTOCOMPLETE_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AutocompleteComponent implements ControlValueAccessor, OnInit {
+export class AutocompleteComponent implements ControlValueAccessor, OnDestroy, OnInit {
 
+  private focusedItem: number = -1;
+  private itemsArray = [];
+  private itemCount = 0;
+  private itemsSub: any;
+  private previousSearchValue: string = '';
   private searchValue: string = '';
+
+  // Placeholders for the callback functions that get set by
+  // `registerOnChanged` and `registerOnTouch`, which are defined
+  // on the `ControlValueAccessor` interface.
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
 
-  @Input() items: Observable<any>;
+  @Input() items: Observable<any[]>;
   @Input() disabled: boolean;
   @Input() placeholder: string = '';
   @Output() searchTextChange: EventEmitter<any> = new EventEmitter();
@@ -41,6 +53,15 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.itemsSub = this.items.subscribe(items => {
+      this.itemsArray = items;
+      this.itemCount = items.length
+      this.clearFocusedItem();
+    });
+  }
+
+  ngOnDestroy() {
+    this.itemsSub.unsubscribe();
   }
 
   get value(): any {
@@ -58,9 +79,18 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
     this.onTouchedCallback();
   }
 
-  writeValue(value: any) {
-    if (value !== this.searchValue) {
-      this.searchValue = value;
+  onKeyup(keyCode) {
+    switch(keyCode) {
+      case KeyCode.ArrowUp:
+        return this.focusPreviousItem();
+      case KeyCode.ArrowDown:
+        return this.focusNextItem();
+      case KeyCode.Esc:
+        return console.log('esc');
+      case KeyCode.Enter:
+        return console.log('enter');
+      default:
+        break;
     }
   }
 
@@ -70,6 +100,40 @@ export class AutocompleteComponent implements ControlValueAccessor, OnInit {
 
   registerOnTouched(callback: any) {
     this.onTouchedCallback = callback;
+  }
+
+  writeValue(value: any) {
+    if (value !== this.searchValue) {
+      this.searchValue = value;
+    }
+  }
+
+  private clearFocusedItem() {
+    this.focusItem(-1);
+  }
+
+  private focusItem(index) {
+    this.focusedItem = index;
+  }
+
+  private focusLastItem() {
+    this.focusItem(this.itemCount - 1);
+  }
+
+  private focusNextItem() {
+    const nextItem = this.focusedItem + 1;
+    if (nextItem < this.itemCount) this.focusItem(nextItem);
+    else this.clearFocusedItem();
+  }
+
+  private focusPreviousItem() {
+    const prevItem = this.focusedItem - 1;
+    if (prevItem < -1) this.focusLastItem();
+    else this.focusItem(prevItem);
+  }
+
+  private isItemFocused() {
+    return this.focusedItem !== -1;
   }
 
 }
