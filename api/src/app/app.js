@@ -1,11 +1,12 @@
 'use strict';
 
+const config = require('../../config');
 const Hapi = require('hapi');
 const events = require('./events');
 
 const server = exports.server = new Hapi.Server();
 
-server.connection({ port: 3000 });
+server.connection({ port: config.port });
 server.register([
   events
 ], (error) => {
