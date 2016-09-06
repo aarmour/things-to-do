@@ -3,11 +3,12 @@
 <section>
   <h1>Autocomplete</h1>
   <ttd-autocomplete
-    [ngModel]="autoCompleteSearchValue"
+    [ngModel]="autocompleteSearchValue"
     (ngModelChange)="onSearchValueChange($event)"
-    [items]="autoCompleteItems"
+    [items]="autocompleteItems"
+    (selectedItemChange)="onAutocompleteSelectedItemChange($event)"
   >
     <template #item let-item="item">{{item}}</template>
   </ttd-autocomplete>
-  {{autoCompleteSearchValue}}
+  <div>Selected item: {{autocompleteSelectedItem}}</div>
 </section>

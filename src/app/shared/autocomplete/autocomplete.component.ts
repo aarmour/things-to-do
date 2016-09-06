@@ -96,7 +96,7 @@ export class AutocompleteComponent implements ControlValueAccessor, OnDestroy, O
       case KeyCode.Esc:
         return console.log('esc');
       case KeyCode.Enter:
-        return console.log('enter');
+        return this.selectItem();
       default:
         break;
     }
@@ -142,6 +142,13 @@ export class AutocompleteComponent implements ControlValueAccessor, OnDestroy, O
 
   private isItemFocused() {
     return this.focusedItem !== -1;
+  }
+
+  private selectItem() {
+    if (!this.isItemFocused()) return;
+    const item = this.itemsArray[this.focusedItem];
+    this.searchValue = item;
+    this.selectedItemChange.emit(item);
   }
 
 }

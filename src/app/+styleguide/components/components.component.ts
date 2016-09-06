@@ -21,8 +21,9 @@ const FRUITS = [
 })
 export class ComponentsComponent implements OnInit {
 
-  private autoCompleteSearchValue: string = '';
-  private autoCompleteItems = new BehaviorSubject<string[]>(FRUITS);
+  private autocompleteSearchValue: string = '';
+  private autocompleteItems = new BehaviorSubject<string[]>(FRUITS);
+  private autocompleteSelectedItem: string;
 
   constructor() {
   }
@@ -31,8 +32,12 @@ export class ComponentsComponent implements OnInit {
   }
 
   onSearchValueChange(newValue) {
-    this.autoCompleteSearchValue = newValue;
-    this.autoCompleteItems.next(this.searchFruits(newValue));
+    this.autocompleteSearchValue = newValue;
+    this.autocompleteItems.next(this.searchFruits(newValue));
+  }
+
+  onAutocompleteSelectedItemChange(item) {
+    this.autocompleteSelectedItem = item;
   }
 
   private searchFruits(query) {
