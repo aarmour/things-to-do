@@ -1,6 +1,7 @@
 'use strict';
 
 const Sequelize = require('sequelize');
+const models = require('./models');
 
 exports.register = function(server, options, next) {
   options = Object.assign({}, options, { dialect: 'postgres' });
@@ -10,14 +11,29 @@ exports.register = function(server, options, next) {
 
   server.expose('database', database);
 
-  // Test the connection
-  database.authenticate()
+  // // Test the connection
+  // database.authenticate()
+  //   .then(() => {
+  //     server.log('Database connection successful');
+  //     next();
+  //   })
+  //   .catch((error) => {
+  //     server.log('Database connection failed:', error);
+  //     next(error);
+  //   });
+
+  Object.keys(models).forEach((key) => {
+    const createModel = models[key];
+    createModel(database);
+  });
+
+  database.sync()
     .then(() => {
-      server.log('Database connection successful');
+      server.log('Database sync successful');
       next();
     })
     .catch((error) => {
-      server.log('Database connection failed:', error);
+      server.log('Database sync failed:', error);
       next(error);
     });
 };
