@@ -1,6 +1,38 @@
 'use strict';
 
 module.exports = {
+  database: {
+    host: {
+      doc: 'The PostgreSQL database host.',
+      format: String,
+      default: 'localhost',
+      env: 'DATABASE_HOST'
+    },
+    port: {
+      doc: 'The PostgreSQL database port.',
+      format: 'port',
+      default: 3001,
+      env: 'DATABASE_PORT'
+    },
+    name: {
+      doc: 'The PostgreSQL database name.',
+      format: String,
+      default: 'ttd',
+      env: 'DATABASE_NAME'
+    },
+    username: {
+      doc: 'The PostgreSQL user name.',
+      format: String,
+      default: 'ttd',
+      env: 'DATABASE_USERNAME'
+    },
+    password: {
+      doc: 'The PostgreSQL password.',
+      format: String,
+      default: '',
+      env: 'DATABASE_PASSWORD'
+    }
+  },
   env: {
     doc: 'The applicaton environment.',
     format: ['prod', 'dev'],

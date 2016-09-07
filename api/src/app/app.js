@@ -2,6 +2,7 @@
 
 const config = require('../../config');
 const Hapi = require('hapi');
+const database = require('./database');
 const events = require('./events');
 const ops = require('./ops');
 
@@ -16,6 +17,10 @@ server.register([
         interval: config.ops.monitoring.interval
       }
     }
+  },
+  {
+    register: database,
+    options: config.database
   },
   events
 ], (error) => {
