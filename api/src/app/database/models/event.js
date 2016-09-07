@@ -24,6 +24,11 @@ function createEventModel(database) {
       validate: {
         len: [0, 5000]
       }
+    },
+    centerGeometry: {
+      field: 'center_geometry',
+      type: DataTypes.GEOMETRY('POINT', 4326),
+      allowNull: false
     }
   });
 
