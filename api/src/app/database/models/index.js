@@ -1,1 +1,1 @@
-exports.event = require('./event');
+exports.Event = require('./event');
