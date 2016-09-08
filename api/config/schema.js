@@ -35,8 +35,8 @@ module.exports = {
   },
   env: {
     doc: 'The applicaton environment.',
-    format: ['prod', 'dev'],
-    default: 'dev',
+    format: ['production', 'development'],
+    default: 'development',
     env: 'NODE_ENV'
   },
   ops: {
