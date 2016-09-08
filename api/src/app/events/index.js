@@ -1,6 +1,15 @@
 'use strict';
 
+const listRoutes = require('./list/list.routes');
+const searchRoutes = require('./search/search.routes');
+
 exports.register = function(server, options, next) {
+
+  server.route([
+    ...listRoutes,
+    ...searchRoutes
+  ]);
+
   next();
 };
 
