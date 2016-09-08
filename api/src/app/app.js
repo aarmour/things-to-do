@@ -1,15 +1,29 @@
 'use strict';
 
 const config = require('../../config');
-const Hapi = require('hapi');
+const hapi = require('hapi');
+const hapiSwagger = require('hapi-swagger');
+const inert = require('inert');
+const vision = require('vision');
 const database = require('./database');
 const events = require('./events');
 const ops = require('./ops');
 
-const server = exports.server = new Hapi.Server();
+const server = exports.server = new hapi.Server();
 
 server.connection({ port: config.port });
 server.register([
+  inert,
+  vision,
+  {
+    register: hapiSwagger,
+    options: {
+      info: {
+        title: 'API Documentation',
+        version: 'v1'
+      }
+    }
+  },
   {
     register: ops,
     options: {
