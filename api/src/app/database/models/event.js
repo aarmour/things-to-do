@@ -10,7 +10,7 @@ module.exports = createEventModel;
  */
 function createEventModel(database) {
   const columnOptions = Object.assign({}, defaultColumnOptions, {
-    title: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
