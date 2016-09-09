@@ -14,9 +14,9 @@ module.exports = [
       tags: ['api'],
       validate: {
         query: Object.assign({},
-          validations.bbox,
-          validations.startFrom,
-          validations.startTo
+          validations.query.bbox,
+          validations.query.startFrom,
+          validations.query.startTo
         )
       }
     }
