@@ -1,6 +1,7 @@
 'use strict';
 
 const handlers = require('./individual.handlers');
+const validations = require('../shared/validations');
 
 module.exports = [
   {
@@ -9,7 +10,18 @@ module.exports = [
     config: {
       handler: handlers.create,
       description: 'Create a new event.',
-      tags: ['api']
+      tags: ['api'],
+      validate: {
+        params: Object.assign({},
+          validations.params.id
+        ),
+        payload: Object.assign({},
+          validations.payload.name,
+          validations.payload.description,
+          validations.payload.placeName,
+          validations.payload.centerGeometry
+        )
+      }
     }
   },
   {
@@ -18,7 +30,12 @@ module.exports = [
     config: {
       handler: handlers.read,
       description: 'Get an individual event.',
-      tags: ['api']
+      tags: ['api'],
+      validate: {
+        params: Object.assign({},
+          validations.params.id
+        )
+      }
     }
   },
   {
@@ -27,7 +44,18 @@ module.exports = [
     config: {
       handler: handlers.update,
       description: 'Update an event.',
-      tags: ['api']
+      tags: ['api'],
+      validate: {
+        params: Object.assign({},
+          validations.params.id
+        ),
+        payload: Object.assign({},
+          validations.payload.name,
+          validations.payload.description,
+          validations.payload.placeName,
+          validations.payload.centerGeometry
+        )
+      }
     }
   },
   {
@@ -36,7 +64,12 @@ module.exports = [
     config: {
       handler: handlers.delete,
       description: 'Delete an event.',
-      tags: ['api']
+      tags: ['api'],
+      validate: {
+        params: Object.assign({},
+          validations.params.id
+        )
+      }
     }
   }
 ];
