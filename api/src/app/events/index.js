@@ -5,6 +5,12 @@ const searchRoutes = require('./search/search.routes');
 
 exports.register = function(server, options, next) {
 
+  server.dependency('ttd-database');
+
+  const { database, models } = server.plugins['ttd-database'];
+
+  server.bind({ database, models });
+
   server.route([
     ...listRoutes,
     ...searchRoutes
