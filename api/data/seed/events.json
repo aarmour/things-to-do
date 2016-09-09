@@ -2,8 +2,8 @@
   {
     "name": "Douglas County Fair",
     "description": "The annual Douglas County Fair in Castle Rock, Colorado.",
-    "placeName": "Douglas County Fairgrounds, 301 Wilcox St, Castle Rock, Colorado 80104, United States",
-    "centerGeometry": {
+    "place_name": "Douglas County Fairgrounds, 301 Wilcox St, Castle Rock, Colorado 80104, United States",
+    "center_geometry": {
       "type": "Point",
       "coordinates": [
         -104.8604,
@@ -20,8 +20,8 @@
   {
     "name": "Wine Tasting",
     "description": "While the practice of wine tasting is as ancient as its production, a more formalized methodology has slowly become established from the 14th century onwards. Modern, professional wine tasters (such as sommeliers or buyers for retailers) use a constantly evolving specialized terminology which is used to describe the range of perceived flavors, aromas and general characteristics of a wine.",
-    "placeName": "Denver Wine Connection",
-    "centerGeometry": {
+    "place_name": "Denver Wine Connection",
+    "center_geometry": {
       "type": "Point",
       "coordinates": [
         -104.988317,

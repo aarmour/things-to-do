@@ -25,13 +25,11 @@ function createEventModel(database) {
         len: [0, 5000]
       }
     },
-    placeName: {
-      field: 'place_name',
+    place_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    centerGeometry: {
-      field: 'center_geometry',
+    center_geometry: {
       type: DataTypes.GEOMETRY('POINT', 4326),
       allowNull: false
     }
