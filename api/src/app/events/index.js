@@ -1,6 +1,7 @@
 'use strict';
 
 const listRoutes = require('./list/list.routes');
+const individualRoutes = require('./individual/individual.routes');
 const searchRoutes = require('./search/search.routes');
 
 exports.register = function(server, options, next) {
@@ -13,6 +14,7 @@ exports.register = function(server, options, next) {
 
   server.route([
     ...listRoutes,
+    ...individualRoutes,
     ...searchRoutes
   ]);
 
