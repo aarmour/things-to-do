@@ -20,11 +20,11 @@ exports.register = function(server, options, next) {
 
   database.sync()
     .then(() => {
-      server.log('Database sync successful');
+      server.log(['info'], { message: 'Database sync successful' });
       next();
     })
     .catch((error) => {
-      server.log('Database sync failed:', error);
+      server.log(['error'], { message: 'Database sync failed.', error });
       next(error);
     });
 };

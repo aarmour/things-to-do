@@ -39,6 +39,6 @@ server.register([
   events
 ], (error) => {
   if (error) {
-    server.log('Failed to load a plugin:', error);
+    server.log(['error'], { message: 'Failed to load a plugin:', error });
   }
 });
