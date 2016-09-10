@@ -13,9 +13,6 @@ module.exports = [
       tags: ['api'],
       auth: 'token',
       validate: {
-        params: Object.assign({},
-          validations.params.id
-        ),
         payload: Object.assign({},
           validations.payload.name,
           validations.payload.description,
