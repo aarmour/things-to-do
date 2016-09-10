@@ -17,7 +17,6 @@ exports.register = function(server, options, next) {
     });
 
     function validate(decoded, request, callback) {
-      console.log(decoded);
       // TODO
       callback(null, true);
     }
