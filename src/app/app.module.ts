@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
+import { CoreModule } from './core';
 import { DashboardModule } from './dashboard';
 
 @NgModule({
