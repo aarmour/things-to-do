@@ -7,7 +7,6 @@ exports.register = function(server, options, next) {
     if (error) return next(error);
 
     server.auth.strategy('token', 'jwt', {
-      // key: new Buffer(options.clientSecret, 'base64'),
       key: options.clientSecret,
       validateFunc: validate,
       verifyOptions: {
