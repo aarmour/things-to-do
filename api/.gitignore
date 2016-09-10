@@ -1,6 +1,9 @@
 # dependencies
 /node_modules
 
+# config for local development
+.local
+
 # IDEs and editors
 /.idea
 .project
