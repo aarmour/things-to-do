@@ -9,8 +9,9 @@ import { DashboardModule } from './dashboard';
 @NgModule({
   imports: [
     BrowserModule,
+    CoreModule,
+    DashboardModule,
     routing,
-    DashboardModule
   ],
   declarations: [
     AppComponent

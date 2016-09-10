@@ -9,6 +9,7 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  'angular2-jwt': 'vendor/angular2-jwt/angular2-jwt.js'
 };
 
 /** User packages configuration. */

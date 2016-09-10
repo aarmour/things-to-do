@@ -5,6 +5,8 @@ import {
 } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
+import { AuthService } from '../core';
+
 @Component({
   moduleId: module.id,
   selector: 'ttd-dashboard',
@@ -17,7 +19,11 @@ export class DashboardComponent implements OnInit {
   private mapCenter: any = { longitude: -105.0, latitude: 39.0 };
   private mapZoom: number = 5;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe((params: any) => {
