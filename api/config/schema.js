@@ -1,6 +1,20 @@
 'use strict';
 
 module.exports = {
+  auth: {
+    clientId: {
+      doc: 'Auth0 client ID.',
+      format: String,
+      default: '',
+      env: 'AUTH_CLIENT_ID'
+    },
+    clientSecret: {
+      doc: 'Auth0 client secret.',
+      format: String,
+      default: '',
+      env: 'AUTH_CLIENT_SECRET'
+    }
+  },
   database: {
     host: {
       doc: 'The PostgreSQL database host.',

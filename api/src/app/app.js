@@ -5,6 +5,7 @@ const hapi = require('hapi');
 const hapiSwagger = require('hapi-swagger');
 const inert = require('inert');
 const vision = require('vision');
+const auth = require('./auth');
 const database = require('./database');
 const events = require('./events');
 const ops = require('./ops');
@@ -31,6 +32,10 @@ server.register([
         interval: config.ops.monitoring.interval
       }
     }
+  },
+  {
+    register: auth,
+    options: config.auth
   },
   {
     register: database,
