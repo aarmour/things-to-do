@@ -11,6 +11,7 @@ module.exports = [
       handler: handlers.create,
       description: 'Create a new event.',
       tags: ['api'],
+      auth: 'token',
       validate: {
         params: Object.assign({},
           validations.params.id
@@ -45,6 +46,7 @@ module.exports = [
       handler: handlers.update,
       description: 'Update an event.',
       tags: ['api'],
+      auth: 'token',
       validate: {
         params: Object.assign({},
           validations.params.id
@@ -65,6 +67,7 @@ module.exports = [
       handler: handlers.delete,
       description: 'Delete an event.',
       tags: ['api'],
+      auth: 'token',
       validate: {
         params: Object.assign({},
           validations.params.id
