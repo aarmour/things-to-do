@@ -18,6 +18,7 @@ module.exports = function(defaults) {
       '@angular/**/*.+(js|js.map)',
       'mapbox-gl/dist/mapbox-gl.js',
       'angular2-jwt/*.+(js|js.map)',
+      '@ngrx/**/*.+(js|js.map)'
     ]
   });
 };
