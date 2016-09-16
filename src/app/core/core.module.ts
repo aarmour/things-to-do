@@ -1,11 +1,13 @@
 import {
   ModuleWithProviders,
   NgModule,
+  OpaqueToken,
   Optional,
   SkipSelf
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { APP_STATE_PROVIDERS, dispatcher } from './app-state';
 import { AuthService } from './auth.service';
 
 @NgModule({
@@ -17,7 +19,12 @@ import { AuthService } from './auth.service';
   exports: [
   ],
   providers: [
-    AuthService
+    ...APP_STATE_PROVIDERS,
+    {
+      provide: AuthService,
+      useClass: AuthService,
+      deps: [dispatcher]
+    },
   ]
 })
 export class CoreModule {

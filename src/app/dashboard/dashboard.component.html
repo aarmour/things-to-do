@@ -1,7 +1,7 @@
 <aside class="sidebar">
   <ttd-toolbar>
-    <button (click)="authService.login()" *ngIf="!authService.authenticated()">Log In</button>
-    <button (click)="authService.logout()" *ngIf="authService.authenticated()">Sign Out</button>
+    <button (click)="onLogin()" *ngIf="!authenticated">Log In</button>
+    <button (click)="onLogout()" *ngIf="authenticated">Sign Out</button>
     <a [routerLink]="['./events']">Home</a>
     <a [routerLink]="['./events/new']" routerLinkActive="active">New event</a>
     <a [routerLink]="['./events/search']" routerLinkActive="active">Find an event</a>

@@ -1,5 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+import 'rxjs/add/observable/fromEventPattern';
+
+import {
+  Action,
+  LoginSuccessAction,
+  LogoutAction,
+  dispatcher
+} from './app-state';
 
 declare const Auth0Lock: any;
 
@@ -16,22 +26,30 @@ export class AuthService {
     }
   });
 
-  constructor() {
+  constructor(@Inject(dispatcher) private dispatcher: Observer<Action>) {
     this.lock.on('authenticated', (authResult) => {
-      localStorage.setItem('id_token', authResult.idToken);
+      this.lock.getProfile(authResult.idToken, (error, profile) => {
+        // TODO: dispatch LoginFailureAction
+        if (error) return console.error(error);
+        this.dispatcher.next(new LoginSuccessAction(authResult.idToken, profile));
+      });
     });
+  }
+
+  public get authenticated() {
+    return tokenNotExpired();
+  };
+
+  public get userProfile() {
+    try { return JSON.parse(localStorage.getItem('user_profile')); } catch(e) { return {}; }
   }
 
   public login() {
     this.lock.show();
   };
 
-  public authenticated() {
-    return tokenNotExpired();
-  };
-
   public logout() {
-    localStorage.removeItem('id_token');
+    this.dispatcher.next(new LogoutAction());
   };
 
 }
