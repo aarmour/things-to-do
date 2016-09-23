@@ -14,6 +14,7 @@
     [longitude]="mapCenter.longitude"
     [latitude]="mapCenter.latitude"
     [zoom]="mapZoom"
+    (mbClick)="onMapClick($event)"
     (moveend)="onMapMoveend($event)"
   ></mb-map>
 </div>

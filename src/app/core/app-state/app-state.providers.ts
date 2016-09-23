@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { createAppStateObservable, loadInitState } from './app-state';
 import { Action } from './actions';
-import { AuthObservables } from './observables';
+import { AuthObservables, MapObservables } from './observables';
 import { AuthService } from '../auth.service';
 
 export const initState = new OpaqueToken('initState');
@@ -15,6 +15,11 @@ export const APP_STATE_PROVIDERS = [
     provide: AuthObservables,
     useClass: AuthObservables,
     deps: [AuthService, dispatcher]
+  },
+  {
+    provide: MapObservables,
+    useClass: MapObservables,
+    deps: [dispatcher]
   },
   {
     provide: initState,

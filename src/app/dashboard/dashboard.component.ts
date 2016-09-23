@@ -13,6 +13,7 @@ import {
   AuthService,
   LoginSuccessAction,
   LogoutAction,
+  SelectMapPointAction,
   dispatcher,
   state
 } from '../core';
@@ -61,6 +62,10 @@ export class DashboardComponent implements OnInit {
 
   onLogout() {
     this.dispatcher.next(new LogoutAction());
+  }
+
+  private onMapClick(event) {
+    this.dispatcher.next(new SelectMapPointAction(event.lngLat));
   }
 
   private onMapMoveend(mapProperties) {
