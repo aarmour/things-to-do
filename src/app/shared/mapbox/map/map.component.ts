@@ -28,6 +28,7 @@ export class MapComponent {
   @Input() latitude: number = 0;
   @Input() longitude: number = 0;
   @Input() zoom: number = 12;
+  @Output('mbClick') click: EventEmitter<any> = new EventEmitter();
   @Output() moveend: EventEmitter<any> = new EventEmitter();
 
   constructor() {
@@ -64,6 +65,8 @@ export class MapComponent {
       center: this.map.getCenter(),
       zoom: this.map.getZoom()
     }));
+
+    this.map.on('click', (event) => this.click.emit(event));
   }
 
   private getStyles() {
