@@ -1,0 +1,17 @@
+.mapboxgl-canvas-container.mapboxgl-interactive,
+.mapboxgl-ctrl-nav-compass {
+    cursor: default;
+    cursor: default;
+    cursor: default;
+}
+.mapboxgl-canvas-container.mapboxgl-interactive:active,
+.mapboxgl-ctrl-nav-compass:active {
+    cursor: -webkit-move;
+    cursor: -moz-move;
+    cursor: move;
+}
+
+.mapboxgl-ctrl-group {
+  border-radius: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
