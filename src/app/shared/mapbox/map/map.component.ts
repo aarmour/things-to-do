@@ -1,10 +1,16 @@
 import {
   Component,
+  ContentChildren,
   EventEmitter,
   Input,
   Output,
+  QueryList,
   Type
 } from '@angular/core';
+
+// import { ControlComponent } from '../control/control';
+import { InfoPopupComponent } from '../control';
+
 declare const mapboxgl: any;
 
 const MbMap = mapboxgl.Map;
@@ -31,6 +37,8 @@ export class MapComponent {
   @Output('mbClick') click: EventEmitter<any> = new EventEmitter();
   @Output() moveend: EventEmitter<any> = new EventEmitter();
 
+  @ContentChildren(InfoPopupComponent) controls: QueryList<InfoPopupComponent>;
+
   constructor() {
     this.containerId = `mb-map-${MapComponent.id++}`;
   }
@@ -49,6 +57,12 @@ export class MapComponent {
   ngAfterViewInit() {
     this.map = this.createMap();
     this.registerEventHandlers();
+    this.addControls();
+  }
+
+  private addControls() {
+    if (!this.controls) return;
+    this.controls.forEach((control) => control.setMap(this.map));
   }
 
   private createMap() {

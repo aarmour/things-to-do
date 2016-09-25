@@ -63,10 +63,12 @@ const barrels: string[] = [
   'app/dashboard/shared',
   'app/dashboard/shared/toolbar',
   'app/shared',
-  'app/shared/mapbox',
-  'app/shared/mapbox/map',
   'app/shared/autocomplete',
+  'app/shared/mapbox',
+  'app/shared/mapbox/control',
+  'app/shared/mapbox/control/info-popup',
   'app/shared/mapbox/geocoder',
+  'app/shared/mapbox/map',
   /** @cli-barrel */
 ];
 
