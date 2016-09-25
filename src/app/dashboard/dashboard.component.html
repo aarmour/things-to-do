@@ -17,6 +17,8 @@
     (mbClick)="onMapClick($event)"
     (moveend)="onMapMoveend($event)"
   >
-    <mb-info-popup></mb-info-popup>
+    <mb-info-popup>
+      <mb-info-popup-content>{{infoPopupContent}}</mb-info-popup-content>
+    </mb-info-popup>
   </mb-map>
 </div>
