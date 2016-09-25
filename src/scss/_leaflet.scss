@@ -15,3 +15,48 @@
   border-radius: 0;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
+
+/**
+ * Custom controls
+ */
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-close {
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20style%3D%22fill%3A%23aaaaaa%3B%22%20d%3D%22M19%204q0.43%200%200.715%200.285t0.285%200.715q0%200.422-0.289%200.711l-6.297%206.289%206.297%206.289q0.289%200.289%200.289%200.711%200%200.43-0.285%200.715t-0.715%200.285q-0.422%200-0.711-0.289l-6.289-6.297-6.289%206.297q-0.289%200.289-0.711%200.289-0.43%200-0.715-0.285t-0.285-0.715q0-0.422%200.289-0.711l6.297-6.289-6.297-6.289q-0.289-0.289-0.289-0.711%200-0.43%200.285-0.715t0.715-0.285q0.422%200%200.711%200.289l6.289%206.297%206.289-6.297q0.289-0.289%200.711-0.289z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
+
+  &:hover {
+    background-color: inherit;
+  }
+}
+
+// InfoPopup
+// ---------
+
+$mapboxgl-ctrl-info-popup-base-width: 200px;
+$mapboxgl-ctrl-info-popup-max-width: 380px;
+
+.mapboxgl-ctrl-info-popup {
+  min-width: $mapboxgl-ctrl-info-popup-base-width;
+  max-width: $mapboxgl-ctrl-info-popup-max-width;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s cubic-bezier(0.645, 0.045, 0.355, 1.000) 0.3s, opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+
+  > button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+  }
+
+  &.expanded {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+}
+
+.mapboxgl-ctrl-info-popup-content {
+  margin-right: 18px;
+  padding: 12px;
+}

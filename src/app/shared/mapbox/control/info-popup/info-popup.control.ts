@@ -1,4 +1,4 @@
-import { createElement } from '../../util/dom';
+import { createButton, createElement } from '../../util/dom';
 
 declare const mapboxgl: any;
 
@@ -12,6 +12,7 @@ const util = mapboxgl.util;
  *
  * @class InfoPopup
  * @param {Object} [options]
+ * @param {Boolean} [options.open=true] Indicates whether the popup should be open initially.
  * @param {string} [options.position='bottom'] A string indicating the control's position on the map.
  *   Options are `'top-right'`, `'top-left'`, `'bottom-right'`, and `'bottom-left'`.
  */
@@ -21,19 +22,31 @@ export function InfoPopup(options) {
 
 InfoPopup.prototype = util.inherit(Control, {
   options: {
-    position: 'bottom-left'
+    open: true,
+    position: 'bottom-left',
   },
 
   onAdd: function(map) {
     const className = 'mapboxgl-ctrl';
 
-    const container = this._container = createElement('div', className + '-group', map.getContainer());
+    const container = this._container = createElement('div', className + '-group ' + className + '-info-popup', map.getContainer());
+    if (this.options.open) container.classList.add('expanded');
 
-    container.innerHTML = '<p>FPO</p>';
+    const content = this._content = createElement('div', className + '-info-popup-content', container);
+
+    this._closeButton = createButton(className + '-icon ' + className + '-close', container, this.close.bind(this));
 
     this._el = map.getCanvasContainer();
 
     return container;
+  },
+
+  close: function() {
+    this._container.classList.remove('expanded');
+  },
+
+  open: function() {
+    this._container.classList.add('expanded');
   },
 
   /**
@@ -41,6 +54,7 @@ InfoPopup.prototype = util.inherit(Control, {
    * @param  {string} html
    */
   html: function(html) {
-
+    if (!this._content) throw new Error('The InfoPopup control must be added to the map before setting the content!');
+    this._content.innerHTML = html;
   }
 });
