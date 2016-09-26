@@ -11,6 +11,7 @@ import {
   Action,
   AppState,
   AuthService,
+  ClearSelectedMapPointAction,
   LoginSuccessAction,
   LogoutAction,
   SelectMapPointAction,
@@ -27,10 +28,10 @@ import {
 export class DashboardComponent implements OnInit {
 
   private authenticated: boolean = false;
-  private infoPopupContent: string;
   private infoPopupOpen: boolean = false;
   private mapCenter: any = { longitude: -105.0, latitude: 39.0 };
   private mapZoom: number = 5;
+  private selectedMapPoint: any;
   private paramsSub: Subscription;
   private stateSub: Subscription;
 
@@ -50,13 +51,17 @@ export class DashboardComponent implements OnInit {
 
     this.stateSub = this.state.subscribe((appState: AppState) => {
       this.authenticated = appState.auth.authenticated;
-      this.infoPopupContent = appState.map.selectedPoint;
+      this.selectedMapPoint = appState.map.selectedPoint;
     });
   }
 
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
     this.stateSub.unsubscribe();
+  }
+
+  onCloseInfoPopup() {
+    this.clearSelectedMapPoint();
   }
 
   onLogin() {
@@ -67,12 +72,13 @@ export class DashboardComponent implements OnInit {
     this.dispatcher.next(new LogoutAction());
   }
 
-  private onMapClick(event) {
-    this.dispatcher.next(new SelectMapPointAction(event.lngLat));
-    this.infoPopupOpen = true;
+  onMapClick(event) {
+    this.toggleSelectedMapPoint(event.lngLat);
   }
 
-  private onMapMoveend(mapProperties) {
+  onMapMoveend(mapProperties) {
+    this.clearSelectedMapPoint();
+
     const newParams = {
       x: mapProperties.center.lng,
       y: mapProperties.center.lat,
@@ -82,6 +88,14 @@ export class DashboardComponent implements OnInit {
     const route = this.route.snapshot.firstChild.url.map(url => url.path);
 
     this.router.navigate(['.', newParams, ...route]);
+  }
+
+  private clearSelectedMapPoint() {
+    this.dispatcher.next(new ClearSelectedMapPointAction());
+  }
+
+  private toggleSelectedMapPoint(lngLat) {
+    this.dispatcher.next(this.selectedMapPoint ? new ClearSelectedMapPointAction() : new SelectMapPointAction(lngLat));
   }
 
 }

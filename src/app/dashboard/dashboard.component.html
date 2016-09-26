@@ -17,8 +17,8 @@
     (mbClick)="onMapClick($event)"
     (moveend)="onMapMoveend($event)"
   >
-    <mb-info-popup [open]="infoPopupOpen" (close)="infoPopupOpen = false">
-      <mb-info-popup-content>{{infoPopupContent}}</mb-info-popup-content>
+    <mb-info-popup [open]="!!selectedMapPoint" (close)="onCloseInfoPopup()">
+      <mb-info-popup-content>{{selectedMapPoint}}</mb-info-popup-content>
     </mb-info-popup>
   </mb-map>
 </div>
