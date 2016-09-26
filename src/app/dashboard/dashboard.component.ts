@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
 
   private authenticated: boolean = false;
   private infoPopupContent: string;
+  private infoPopupOpen: boolean = false;
   private mapCenter: any = { longitude: -105.0, latitude: 39.0 };
   private mapZoom: number = 5;
   private paramsSub: Subscription;
@@ -68,6 +69,7 @@ export class DashboardComponent implements OnInit {
 
   private onMapClick(event) {
     this.dispatcher.next(new SelectMapPointAction(event.lngLat));
+    this.infoPopupOpen = true;
   }
 
   private onMapMoveend(mapProperties) {
