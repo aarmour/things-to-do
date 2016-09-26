@@ -2,7 +2,9 @@ import {
   Component,
   ViewChild,
   ElementRef,
-  Input
+  EventEmitter,
+  Input,
+  Output
 } from '@angular/core';
 
 import { ControlComponent } from '../control.component';
@@ -19,12 +21,19 @@ export class InfoPopupComponent extends ControlComponent {
   private contentObserver: any;
   private infoPopup: any;
 
+  @Input() open: boolean = true;
   @Input() position: string = 'bottom-left';
+  @Output() close: EventEmitter<any> = new EventEmitter<any>();
 
   @ViewChild('content') content: ElementRef;
 
   constructor() {
     super();
+  }
+
+  ngOnChanges() {
+    if (!this.infoPopup) return;
+    this.infoPopup[this.open ? 'open' : 'close']();
   }
 
   ngAfterViewInit() {
@@ -35,7 +44,9 @@ export class InfoPopupComponent extends ControlComponent {
   afterSetMap() {
     if (!this.map) return;
 
-    const infoPopup = this.infoPopup = new InfoPopup({ position: this.position });
+    const infoPopup = this.infoPopup = new InfoPopup({ open: this.open, position: this.position });
+
+    infoPopup.on('close', () => this.close.next({}));
 
     this.map.addControl(infoPopup);
     this.setContent();
