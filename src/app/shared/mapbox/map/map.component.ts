@@ -43,7 +43,7 @@ export class MapComponent {
     this.containerId = `mb-map-${MapComponent.id++}`;
   }
 
-  ngOnChange() {
+  ngOnChanges() {
     if (!this.map) return;
 
     const map = this.map;
