@@ -41,7 +41,7 @@ $mapboxgl-ctrl-info-popup-max-width: 380px;
   max-width: $mapboxgl-ctrl-info-popup-max-width;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s cubic-bezier(0.645, 0.045, 0.355, 1.000) 0.3s, opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
 
   > button {
     position: absolute;
