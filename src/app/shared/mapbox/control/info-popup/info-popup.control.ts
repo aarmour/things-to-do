@@ -43,6 +43,7 @@ InfoPopup.prototype = util.inherit(Control, {
 
   close: function() {
     this._container.classList.remove('expanded');
+    this.fire('close');
   },
 
   open: function() {
