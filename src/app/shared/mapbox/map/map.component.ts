@@ -8,12 +8,12 @@ import {
   Type
 } from '@angular/core';
 
-// import { ControlComponent } from '../control/control';
 import { InfoPopupComponent } from '../control';
 
 declare const mapboxgl: any;
 
 const MbMap = mapboxgl.Map;
+const LngLat = mapboxgl.LngLat;
 
 @Component({
   moduleId: module.id,
@@ -75,12 +75,17 @@ export class MapComponent {
   }
 
   private registerEventHandlers() {
-    this.map.on('moveend', () => this.moveend.emit({
-      center: this.map.getCenter(),
-      zoom: this.map.getZoom()
-    }));
+    this.map.on('moveend', () => {
+      this.moveend.emit({
+        center: this.normalizeLngLat(this.map.getCenter()),
+        zoom: this.map.getZoom()
+      });
+    });
 
-    this.map.on('click', (event) => this.click.emit(event));
+    this.map.on('click', (event) => {
+      event.lngLat = this.normalizeLngLat(event.lngLat);
+      this.click.emit(event);
+    });
   }
 
   private getStyles() {
@@ -88,5 +93,9 @@ export class MapComponent {
       width: this.width ? `${this.width}px` : '100%',
       height: this.height ? `${this.height}px` : '100%'
     };
+  }
+
+  private normalizeLngLat(lngLat) {
+    return new LngLat(lngLat.lng % 180, lngLat.lat)
   }
 }
