@@ -7,6 +7,7 @@ import 'rxjs/add/operator/scan';
 import { dispatcher } from '../app-state.providers';
 import {
   Action,
+  ClearSelectedMapPointAction,
   SelectMapPointAction
 } from '../actions';
 
@@ -19,6 +20,8 @@ export class MapObservables {
     return this.actions.scan((state, action) => {
       if (action instanceof SelectMapPointAction) {
         return action.lngLat;
+      } else if (action instanceof ClearSelectedMapPointAction) {
+        return null;
       }
 
       return state;
