@@ -22,7 +22,7 @@ exports.register = function(server, options, next) {
         {
           module: 'good-squeeze',
           name: 'Squeeze',
-          args: [{ log: '*', response: '*' }]
+          args: [{ log: '*', response: '*', error: '*' }]
         },
         {
           module: 'good-console'
