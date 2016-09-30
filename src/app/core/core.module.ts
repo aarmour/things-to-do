@@ -6,13 +6,15 @@ import {
   SkipSelf
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 
 import { APP_STATE_PROVIDERS, dispatcher } from './app-state';
 import { AuthService } from './auth.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    HttpModule
   ],
   declarations: [
   ],
