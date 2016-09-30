@@ -25,6 +25,8 @@ module.exports = function (config) {
       { pattern: 'dist/vendor/zone.js/dist/async-test.js', included: true, watched: false },
       { pattern: 'dist/vendor/zone.js/dist/fake-async-test.js', included: true, watched: false },
 
+      { pattern: 'dist/vendor/mapbox-gl/dist/mapbox-gl.js', included: true, watched: false },
+
       { pattern: 'config/karma-test-shim.js', included: true, watched: true },
 
       // Distribution folder.
