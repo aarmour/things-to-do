@@ -28,7 +28,7 @@ export const APP_STATE_PROVIDERS = [
   },
   {
     provide: dispatcher,
-    useValue: new Subject<Action>(null)
+    useValue: new Subject<Action>()
   },
   {
     provide: state,

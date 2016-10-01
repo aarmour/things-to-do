@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
+import Auth0Lock from 'auth0-lock';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
@@ -10,8 +11,6 @@ import {
   LogoutAction,
   dispatcher
 } from './app-state';
-
-declare const Auth0Lock: any;
 
 @Injectable()
 export class AuthService {

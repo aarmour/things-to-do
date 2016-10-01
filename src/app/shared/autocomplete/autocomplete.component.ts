@@ -25,10 +25,9 @@ export const AUTOCOMPLETE_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  moduleId: module.id,
   selector: 'ttd-autocomplete',
   templateUrl: 'autocomplete.component.html',
-  styleUrls: ['autocomplete.component.css'],
+  styleUrls: ['autocomplete.component.scss'],
   providers: [AUTOCOMPLETE_CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

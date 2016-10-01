@@ -1,10 +1,12 @@
+import './polyfills.ts';
+
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode } from '@angular/core';
+import { environment } from './environments/environment';
+import { AppModule } from './app/';
 
-import { AppModule, environment } from './app';
-import { setMapboxAccessToken } from './app/shared';
+if (environment.production) {
+  enableProdMode();
+}
 
-setMapboxAccessToken(environment.mapbox.accessToken);
-
-// TODO: switch to static bootstrapping with the Ahead-Of-Time (AOT) compiler
-// once angular-cli supports it.
 platformBrowserDynamic().bootstrapModule(AppModule);

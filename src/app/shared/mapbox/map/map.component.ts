@@ -16,7 +16,6 @@ const MbMap = mapboxgl.Map;
 const LngLat = mapboxgl.LngLat;
 
 @Component({
-  moduleId: module.id,
   selector: 'mb-map',
   templateUrl: 'map.component.html'
 })

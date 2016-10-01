@@ -7,6 +7,7 @@ import { AutocompleteComponent } from './autocomplete';
 import {
   GeocoderComponent,
   GeocoderService,
+  InfoPopupContentComponent,
   InfoPopupComponent,
   MapComponent
 } from './mapbox';
@@ -20,6 +21,7 @@ import {
   declarations: [
     AutocompleteComponent,
     GeocoderComponent,
+    InfoPopupContentComponent,
     InfoPopupComponent,
     MapComponent
   ],
@@ -29,6 +31,7 @@ import {
   exports: [
     AutocompleteComponent,
     GeocoderComponent,
+    InfoPopupContentComponent,
     InfoPopupComponent,
     MapComponent
   ]

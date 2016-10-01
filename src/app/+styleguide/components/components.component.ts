@@ -14,10 +14,9 @@ const FRUITS = [
 ];
 
 @Component({
-  moduleId: module.id,
   selector: 'ttd-components',
   templateUrl: 'components.component.html',
-  styleUrls: ['components.component.css']
+  styleUrls: ['components.component.scss']
 })
 export class ComponentsComponent implements OnInit {
 

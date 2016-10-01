@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'ttd-styleguide',
   templateUrl: 'styleguide.component.html',
-  styleUrls: ['styleguide.component.css']
+  styleUrls: ['styleguide.component.scss']
 })
 export class StyleguideComponent implements OnInit {
 

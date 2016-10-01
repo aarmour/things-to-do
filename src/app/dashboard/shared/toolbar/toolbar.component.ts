@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'ttd-toolbar',
   templateUrl: 'toolbar.component.html',
-  styleUrls: ['toolbar.component.css']
+  styleUrls: ['toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
 

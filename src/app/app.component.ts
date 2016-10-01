@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
 
+import { environment } from '../environments/environment';
+import { setMapboxAccessToken } from './shared';
+
 @Component({
-  moduleId: module.id,
   selector: 'ttd-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css']
+  styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
+
+  constructor() {
+    setMapboxAccessToken(environment.mapbox.accessToken);
+  }
+
 }

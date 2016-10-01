@@ -11,10 +11,9 @@ import { ControlComponent } from '../control.component';
 import { InfoPopup } from './info-popup.control';
 
 @Component({
-  moduleId: module.id,
   selector: 'mb-info-popup',
   templateUrl: 'info-popup.component.html',
-  styleUrls: ['info-popup.component.css']
+  styleUrls: ['info-popup.component.scss']
 })
 export class InfoPopupComponent extends ControlComponent {
 

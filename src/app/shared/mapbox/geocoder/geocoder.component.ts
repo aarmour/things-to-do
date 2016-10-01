@@ -10,10 +10,9 @@ import { GeocoderService } from './geocoder.service';
 const DEBOUNCE_TIME = 300;
 
 @Component({
-  moduleId: module.id,
   selector: 'ttd-geocoder',
   templateUrl: 'geocoder.component.html',
-  styleUrls: ['geocoder.component.css']
+  styleUrls: ['geocoder.component.scss']
 })
 export class GeocoderComponent implements OnInit {
 

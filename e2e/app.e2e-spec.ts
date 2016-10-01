@@ -1,10 +1,10 @@
-import { ThingsToDoPage } from './app.po';
+import { MigrationProjectPage } from './app.po';
 
-describe('things-to-do App', function() {
-  let page: ThingsToDoPage;
+describe('migration-project App', function() {
+  let page: MigrationProjectPage;
 
   beforeEach(() => {
-    page = new ThingsToDoPage();
+    page = new MigrationProjectPage();
   });
 
   it('should display message saying app works', () => {
