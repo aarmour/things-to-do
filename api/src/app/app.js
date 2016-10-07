@@ -12,7 +12,13 @@ const ops = require('./ops');
 
 const server = exports.server = new hapi.Server();
 
-server.connection({ port: config.port });
+server.connection({
+  port: config.port,
+  routes: {
+    cors: true
+  }
+});
+
 server.register([
   inert,
   vision,
