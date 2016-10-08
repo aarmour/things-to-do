@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observer } from 'rxjs/Observer';
 
 import { environment } from '../environments/environment';
 import { setMapboxAccessToken } from './shared';

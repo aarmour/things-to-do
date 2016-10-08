@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import {
   Headers,
   Http,
@@ -12,14 +12,18 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ApiHttpService {
 
-  constructor(private http: Http, public idToken: string) { }
+  private idToken: string;
+
+  constructor(private http: Http, idToken: Observable<string>) {
+    idToken.subscribe((idToken: string) => this.idToken = idToken);
+  }
 
   request(url: string|Request, options?: RequestOptionsArgs) : Observable<Response> {
-      return this.http.request(url, this.mergeRequestOptions(options));
+    return this.http.request(url, this.mergeRequestOptions(options));
   }
 
   get(url: string, options?: RequestOptionsArgs) : Observable<Response> {
-      return this.http.get(url, this.mergeRequestOptions(options));
+    return this.http.get(url, this.mergeRequestOptions(options));
   }
 
   post(url: string, body: any, options?: RequestOptionsArgs) : Observable<Response> {
@@ -46,17 +50,15 @@ export class ApiHttpService {
     return this.http.options(url, this.mergeRequestOptions(options));
   }
 
-  private createHeaderValue() {
-    return `Bearer ${this.idToken}`;
-  }
-
   private maybeSetAuthorizationHeader(headers: Headers) {
+    if (!this.idToken) return;
     if (headers.has('Authorization')) return;
-    headers.set('Authorization', this.createHeaderValue());
+    headers.set('Authorization', `Bearer ${this.idToken}`);
   }
 
   private mergeRequestOptions(options?: RequestOptionsArgs): RequestOptions {
     const mergedOptions = new RequestOptions().merge(options);
+    if (!mergedOptions.headers) mergedOptions.headers = new Headers();
     this.maybeSetAuthorizationHeader(mergedOptions.headers);
     return mergedOptions;
   }

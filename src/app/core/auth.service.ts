@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import Auth0Lock from 'auth0-lock';
 import { tokenNotExpired } from 'angular2-jwt';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/observable/fromEventPattern';
@@ -25,18 +26,25 @@ export class AuthService {
     }
   });
 
+  private idTokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   constructor(@Inject(dispatcher) private dispatcher: Observer<Action>) {
     this.lock.on('authenticated', (authResult) => {
       this.lock.getProfile(authResult.idToken, (error, profile) => {
         // TODO: dispatch LoginFailureAction
         if (error) return console.error(error);
         this.dispatcher.next(new LoginSuccessAction(authResult.idToken, profile));
+        this.idTokenSubject.next(authResult.idToken);
       });
     });
   }
 
   public get authenticated() {
     return tokenNotExpired();
+  };
+
+  public get idToken() {
+    return this.idTokenSubject.asObservable();
   };
 
   public get userProfile() {

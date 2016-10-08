@@ -13,26 +13,19 @@ export interface UserProfile {
   email: string
 }
 
+export interface User {
+  idToken: string,
+  profile: UserProfile
+}
+
 export interface AppState {
   auth: {
     authenticated: boolean,
-    user: UserProfile
+    user: User
   },
   map: {
     selectedPoint: any
   }
-}
-
-export function loadInitState(authService: AuthService) {
-  return {
-    auth: {
-      authenticated: authService.authenticated,
-      user: authService.userProfile
-    },
-    map: {
-      selectedPoint: null
-    }
-  };
 }
 
 export function createAppStateObservable(
@@ -48,10 +41,13 @@ export function createAppStateObservable(
     {
       auth: {
         authenticated: s[0],
-        user: s[1]
+        user: {
+          idToken: s[1],
+          profile: s[2]
+        }
       },
       map: {
-        selectedPoint: s[2]
+        selectedPoint: s[3]
       }
     }
   );
@@ -59,7 +55,8 @@ export function createAppStateObservable(
   const appStateObservable: Observable<AppState> =
     authObservables.authenticated(initState.auth.authenticated)
     .zip(
-      authObservables.user(initState.auth.user),
+      authObservables.idToken(initState.auth.user.idToken),
+      authObservables.userProfile(initState.auth.user.profile),
       mapObservables.selectedPoint()
     )
     .map(combine);
