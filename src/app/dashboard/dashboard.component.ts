@@ -3,20 +3,16 @@ import {
   ActivatedRoute,
   Router
 } from '@angular/router';
-import { Observer } from 'rxjs/Observer';
-import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 
+import { AppState } from '../core/app-state/models/app-state.model';
 import {
-  Action,
-  AppState,
   AuthService,
   ClearSelectedMapPointAction,
-  LoginSuccessAction,
   LogoutAction,
   SelectMapPointAction,
-  dispatcher,
-  state
+  SetMapCenterAction
 } from '../core';
 
 @Component({
@@ -31,15 +27,17 @@ export class DashboardComponent implements OnInit {
   private mapCenter: any = { longitude: -105.0, latitude: 39.0 };
   private mapZoom: number = 5;
   private selectedMapPoint: any;
+
+  // Subscriptions
+  private authSub: Subscription;
+  private mapSub: Subscription;
   private paramsSub: Subscription;
-  private stateSub: Subscription;
 
   constructor(
     private authService: AuthService,
-    @Inject(dispatcher) private dispatcher: Observer<Action>,
     private route: ActivatedRoute,
     private router: Router,
-    @Inject(state) private state: Observable<AppState>
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
@@ -48,15 +46,18 @@ export class DashboardComponent implements OnInit {
       if (params.z) this.mapZoom = +params.z;
     });
 
-    this.stateSub = this.state.subscribe((appState: AppState) => {
-      this.authenticated = appState.auth.authenticated;
-      this.selectedMapPoint = appState.map.selectedPoint;
-    });
+    this.authSub = this.store
+      .select('auth')
+      .subscribe((auth: any) => this.authenticated = auth.authenticated);
+
+    this.mapSub = this.store
+      .select('map')
+      .subscribe((map: any) => this.selectedMapPoint = map.selectedPoint);
   }
 
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
-    this.stateSub.unsubscribe();
+    this.mapSub.unsubscribe();
   }
 
   onCloseInfoPopup() {
@@ -68,7 +69,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onLogout() {
-    this.dispatcher.next(new LogoutAction());
+    this.store.dispatch(new LogoutAction());
   }
 
   onMapClick(event) {
@@ -77,6 +78,7 @@ export class DashboardComponent implements OnInit {
 
   onMapMoveend(mapProperties) {
     this.clearSelectedMapPoint();
+    this.store.dispatch(new SetMapCenterAction(mapProperties.center));
 
     const newParams = {
       x: mapProperties.center.lng,
@@ -90,11 +92,12 @@ export class DashboardComponent implements OnInit {
   }
 
   private clearSelectedMapPoint() {
-    this.dispatcher.next(new ClearSelectedMapPointAction());
+    this.store.dispatch(new ClearSelectedMapPointAction());
   }
 
   private toggleSelectedMapPoint(lngLat) {
-    this.dispatcher.next(this.selectedMapPoint ? new ClearSelectedMapPointAction() : new SelectMapPointAction(lngLat));
+    const action = this.selectedMapPoint ? new ClearSelectedMapPointAction() : new SelectMapPointAction(lngLat);
+    this.store.dispatch(action);
   }
 
 }

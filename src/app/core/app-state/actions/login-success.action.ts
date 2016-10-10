@@ -1,7 +1,14 @@
-import { UserProfile } from '../app-state';
+import { User } from '../models/user.model';
 
-export class LoginSuccessAction {
+import { Action } from '@ngrx/store';
+import { type } from '../util';
 
-  constructor(public idToken: string, public user: UserProfile) {}
+export const LOGIN_SUCCESS = type('login success');
+
+export class LoginSuccessAction implements Action {
+
+  type = LOGIN_SUCCESS;
+
+  constructor(public payload: User) {}
 
 }

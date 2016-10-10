@@ -1,19 +1,18 @@
 import { Inject, Injectable } from '@angular/core';
 import Auth0Lock from 'auth0-lock';
-import { tokenNotExpired } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import 'rxjs/add/observable/fromEventPattern';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
+import { User } from './app-state/models/user.model';
 import {
-  Action,
   LoginSuccessAction,
-  LogoutAction,
-  dispatcher
+  LogoutAction
 } from './app-state';
 
 @Injectable()
 export class AuthService {
+
+  private authenticatedSubject:ReplaySubject<any> = new ReplaySubject<any>(1);
 
   // TODO: get client ID and domain from config
   private lock = new Auth0Lock('S4l1AdOBaXov8pYoQxegKSywBYu2nwox', 'ttd.auth0.com', {
@@ -25,30 +24,24 @@ export class AuthService {
     }
   });
 
-  constructor(@Inject(dispatcher) private dispatcher: Observer<Action>) {
+  constructor() {
     this.lock.on('authenticated', (authResult) => {
       this.lock.getProfile(authResult.idToken, (error, profile) => {
-        // TODO: dispatch LoginFailureAction
-        if (error) return console.error(error);
-        this.dispatcher.next(new LoginSuccessAction(authResult.idToken, profile));
+        if (error) this.authenticatedSubject.error(error);
+        else this.authenticatedSubject.next({
+          idToken: authResult.idToken,
+          profile
+        } as User);
       });
     });
   }
 
   public get authenticated() {
-    return tokenNotExpired();
-  };
-
-  public get userProfile() {
-    try { return JSON.parse(localStorage.getItem('user_profile')); } catch(e) { return {}; }
+    return this.authenticatedSubject.asObservable();
   }
 
   public login() {
     this.lock.show();
-  };
-
-  public logout() {
-    this.dispatcher.next(new LogoutAction());
   };
 
 }
