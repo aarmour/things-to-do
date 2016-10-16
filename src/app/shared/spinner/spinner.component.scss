@@ -1,0 +1,86 @@
+$spinner-bg-color: rgba(0, 0, 0, 0.05);
+$spinner-color: #e4e4e4;
+$spinner-sm-width: 3em;
+$spinner-sm-border-width: 0.5em;
+$spinner-md-width: 4em;
+$spinner-md-border-width: 0.7em;
+$spinner-lg-width: 6em;
+$spinner-lg-border-width: 0.9em;
+$spinner-default-width: $spinner-md-width;
+$spinner-default-border-width: $spinner-md-border-width;
+
+@mixin make-spinner($width, $border-width) {
+  width: $width;
+  height: $width;
+
+  .spinner {
+    border-width: $border-width;
+  }
+
+  .spinner,
+  .spinner:after {
+    width: $width;
+    height: $width;
+  }
+}
+
+:host {
+  display: block;
+  overflow: hidden;
+
+  .spinner {
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: solid $spinner-bg-color;
+    border-right: solid $spinner-bg-color;
+    border-bottom: solid $spinner-bg-color;
+    border-left: solid $spinner-color;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: spinner 1.1s infinite linear;
+    animation: spinner 1.1s infinite linear;
+  }
+
+  .spinner,
+  .spinner:after {
+    border-radius: 50%;
+  }
+
+  @include make-spinner($spinner-default-width, $spinner-default-border-width);
+}
+
+:host([ttd-spinner-sm]) {
+  @include make-spinner($spinner-sm-width, $spinner-sm-border-width);
+}
+
+:host([ttd-spinner-md]) {
+  @include make-spinner($spinner-md-width, $spinner-md-border-width);
+}
+
+:host([ttd-spinner-lg]) {
+  @include make-spinner($spinner-lg-width, $spinner-lg-border-width);
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

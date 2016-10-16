@@ -11,6 +11,7 @@ import {
   InfoPopupComponent,
   MapComponent
 } from './mapbox';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {
     GeocoderComponent,
     InfoPopupContentComponent,
     InfoPopupComponent,
-    MapComponent
+    MapComponent,
+    SpinnerComponent
   ],
   providers: [
     GeocoderService
@@ -33,7 +35,8 @@ import {
     GeocoderComponent,
     InfoPopupContentComponent,
     InfoPopupComponent,
-    MapComponent
+    MapComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }
