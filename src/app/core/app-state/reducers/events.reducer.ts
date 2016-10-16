@@ -21,15 +21,15 @@ type Action =
   FetchEventSuccessAction |
   SelectEventSuccessAction;
 
-export interface EventEntityMetadataState {
-  isFetching: boolean,
+export interface EventMetadataState {
+  isLoading: boolean,
   fetchFailed: boolean
 }
 
 export interface EventsState {
   ids: Set<string>,
   entities: { [id: string]: Event },
-  entityMetadata: { [id: string]: EventEntityMetadataState },
+  entityMetadata: { [id: string]: EventMetadataState },
   selectedEventId: string | null
 }
 
@@ -134,8 +134,8 @@ export function getSelectedEvent(state: Observable<EventsState>) {
   .map(([entities, selectedEventId]) => entities[selectedEventId]);
 }
 
-export function getSelectedEventEntityMetadata(state: Observable<EventsState>) {
-  return combineLatest<{ [id: string]: EventEntityMetadataState }, string>(
+export function getSelectedEventMetadata(state: Observable<EventsState>) {
+  return combineLatest<{ [id: string]: EventMetadataState }, string>(
     state.let(getEventEntityMetadata),
     state.let(getSelectedEventId)
   )

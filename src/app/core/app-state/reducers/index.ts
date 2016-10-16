@@ -40,4 +40,4 @@ export function getEventsState(state: Observable<State>) {
 export const getEventEntities = compose(fromEvents.getEventEntities, getEventsState);
 export const getEventIds = compose(fromEvents.getEventIds, getEventsState);
 export const getSelectedEvent = compose(fromEvents.getSelectedEvent, getEventsState);
-export const getSelectedEventMetadata = compose(fromEvents.getSelectedEventEntityMetadata, getEventsState);
+export const getSelectedEventMetadata = compose(fromEvents.getSelectedEventMetadata, getEventsState);
