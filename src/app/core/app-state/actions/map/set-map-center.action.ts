@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { type } from '../util';
+
+import { type } from '../../util';
 
 export const SET_MAP_CENTER = type('set map center');
 

@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { type } from '../util';
+
+import { type } from '../../util';
 
 export const CLEAR_SELECTED_MAP_POINT = type('clear selected map point');
 

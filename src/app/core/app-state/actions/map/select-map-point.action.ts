@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { type } from '../util';
+
+import { type } from '../../util';
 
 export const SELECT_MAP_POINT = type('select map point');
 
