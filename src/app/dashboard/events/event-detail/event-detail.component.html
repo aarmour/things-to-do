@@ -1,1 +1,2 @@
-<p>{{event | async | json}}</p>
+<ttd-spinner *ngIf="isLoading"></ttd-spinner>
+<ttd-event-summary *ngIf="!isLoading" [event]="event | async"></ttd-event-summary>

@@ -11,7 +11,8 @@ import {
   FetchEventAction,
   SelectEventAction,
   State,
-  getSelectedEvent
+  getSelectedEvent,
+  getSelectedEventMetadata
 } from '../../../core';
 
 @Component({
@@ -22,13 +23,20 @@ import {
 export class EventDetailComponent implements OnDestroy, OnInit {
 
   private actionsSubscription: Subscription;
+  private eventMetadataSubscription: Subscription;
   private event: Observable<Event>;
+  private isLoading: boolean = false;
 
   constructor(private store: Store<State>, route: ActivatedRoute) {
     this.actionsSubscription = route.params
       .select<string>('id')
       .map(id => new SelectEventAction(id))
       .subscribe(store);
+
+    this.eventMetadataSubscription = store.let(getSelectedEventMetadata)
+      .subscribe(state => {
+        this.isLoading = state.isLoading;
+      });
 
     this.event = store.let(getSelectedEvent);
   }

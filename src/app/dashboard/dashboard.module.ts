@@ -10,6 +10,7 @@ import {
   EventDetailComponent,
   EventSearchComponent
 } from './events';
+import { EventSummaryComponent } from './events/shared/event-summary/event-summary.component';
 import { SharedModule } from '../shared';
 import { ToolbarComponent } from './shared';
 
@@ -23,10 +24,11 @@ import { ToolbarComponent } from './shared';
   declarations: [
     DashboardComponent,
     EventCreateComponent,
-    EventListComponent,
     EventDetailComponent,
+    EventListComponent,
     EventSearchComponent,
-    ToolbarComponent
+    EventSummaryComponent,
+    ToolbarComponent,
   ]
 })
 export class DashboardModule {}
