@@ -6,13 +6,13 @@ import {
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AppState } from '../core/app-state/models/app-state.model';
 import {
   AuthService,
   ClearSelectedMapPointAction,
   LogoutAction,
   SelectMapPointAction,
-  SetMapCenterAction
+  SetMapCenterAction,
+  State
 } from '../core';
 
 @Component({
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<State>
   ) {}
 
   ngOnInit() {

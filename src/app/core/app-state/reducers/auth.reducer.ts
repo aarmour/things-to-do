@@ -1,14 +1,19 @@
+import { User } from '../models/user.model';
 import {
   LOGIN_SUCCESS,
   LoginSuccessAction,
   LOGOUT,
   LogoutAction
 } from '../actions';
-import { AuthState } from '../models/app-state.model';
 
 type Action =
   LoginSuccessAction |
   LogoutAction;
+
+export interface AuthState {
+  authenticated: boolean,
+  user: User | null
+}
 
 const initialState = {
   authenticated: false,

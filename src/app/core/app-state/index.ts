@@ -1,2 +1,3 @@
 export * from './actions';
-export * from './create-store';
+export * from './effects';
+export * from './reducers';

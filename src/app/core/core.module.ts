@@ -3,21 +3,36 @@ import {
   Optional,
   SkipSelf
 } from '@angular/core';
+import { Http } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { Store, StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
+import { ApiHttpService } from './api-http.service';
 import { AuthService } from './auth.service';
-import { createStore } from './app-state';
+import { ApiEffects, EventsEffects } from './app-state';
+import { State, rootReducer } from './app-state/reducers';
 
 @NgModule({
   imports: [
     CommonModule,
-    createStore()
+    EffectsModule.run(ApiEffects),
+    EffectsModule.run(EventsEffects),
+    StoreModule.provideStore(rootReducer)
   ],
   declarations: [
   ],
   exports: [
   ],
   providers: [
+    {
+      provide: ApiHttpService,
+      useFactory: (http: Http, store: Store<State>) =>
+        new ApiHttpService(http, store.select('auth')
+          .map((auth: any) => auth.user || {})
+          .map((user: any) => user.idToken)),
+      deps: [Http, Store]
+    },
     AuthService
   ]
 })

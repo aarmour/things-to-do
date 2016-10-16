@@ -6,7 +6,6 @@ import {
   SET_MAP_CENTER,
   SetMapCenterAction,
 } from '../actions';
-import { MapState } from '../models/app-state.model';
 
 declare const mapboxgl: any;
 
@@ -16,6 +15,11 @@ type Action =
   ClearSelectedMapPointAction |
   SelectMapPointAction |
   SetMapCenterAction;
+
+export interface MapState {
+  center: mapboxgl.LngLat,
+  selectedPoint: mapboxgl.LngLat | null
+}
 
 const initialState = {
   center: new LngLat(-105.0, 38.0),

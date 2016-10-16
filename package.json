@@ -26,6 +26,7 @@
     "angular2-jwt": "^0.1.22",
     "auth0-lock": "^10.2.2",
     "core-js": "^2.4.1",
+    "humps": "^1.1.0",
     "mapbox-gl": "^0.22.1",
     "ngrx-store-localstorage": "^0.1.5",
     "normalize.css": "^4.2.0",
@@ -36,6 +37,7 @@
   "devDependencies": {
     "@types/auth0-lock": "^10.0.20",
     "@types/geojson": "0.0.31",
+    "@types/humps": "^1.1.2",
     "@types/jasmine": "^2.2.30",
     "@types/mapbox-gl": "^0.24.1",
     "angular-cli": "1.0.0-beta.16",

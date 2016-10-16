@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { environment } from '../environments/environment';
-import { AppState } from './core/app-state/models/app-state.model';
-import { AuthService, LoginSuccessAction } from './core';
+import { AuthService, LoginSuccessAction, State } from './core';
 import { setMapboxAccessToken } from './shared';
 
 @Component({
@@ -15,7 +14,7 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
-    private store: Store<AppState>
+    private store: Store<State>
   ) {
     setMapboxAccessToken(environment.mapbox.accessToken);
 
