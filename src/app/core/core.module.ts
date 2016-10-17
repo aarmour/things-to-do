@@ -8,9 +8,10 @@ import { CommonModule } from '@angular/common';
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { SharedModule } from '../shared';
 import { ApiHttpService } from './api-http.service';
 import { AuthService } from './auth.service';
-import { ApiEffects, EventsEffects } from './app-state';
+import { ApiEffects, EventsEffects, PlacesEffects } from './app-state';
 import { State, rootReducer } from './app-state/reducers';
 
 @NgModule({
@@ -18,6 +19,8 @@ import { State, rootReducer } from './app-state/reducers';
     CommonModule,
     EffectsModule.run(ApiEffects),
     EffectsModule.run(EventsEffects),
+    EffectsModule.run(PlacesEffects),
+    SharedModule,
     StoreModule.provideStore(rootReducer)
   ],
   declarations: [

@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+
 import {
   CLEAR_SELECTED_MAP_POINT,
   ClearSelectedMapPointAction,
@@ -38,4 +40,12 @@ export function map(state = initialState, action: Action): MapState {
       return state;
     }
   }
+}
+
+/**
+ * Selectors
+ */
+
+export function getSelectedMapPoint(state: Observable<MapState>) {
+  return state.select(state => state.selectedPoint);
 }

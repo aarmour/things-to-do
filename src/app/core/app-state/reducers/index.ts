@@ -9,17 +9,22 @@ import { AuthState, auth } from './auth.reducer';
 import { EventsState, events } from './events.reducer';
 import * as fromEvents from './events.reducer';
 import { MapState, map } from './map.reducer';
+import * as fromMap from './map.reducer';
+import { PlacesState, places } from './places.reducer';
+import * as fromPlaces from './places.reducer';
 
 export interface State {
   auth: AuthState,
   events: EventsState,
-  map: MapState
+  map: MapState,
+  places: PlacesState
 }
 
 const reducers = {
   auth,
   events,
-  map
+  map,
+  places
 };
 
 // TODO: create separate development and production reducers
@@ -41,3 +46,15 @@ export const getEventEntities = compose(fromEvents.getEventEntities, getEventsSt
 export const getEventIds = compose(fromEvents.getEventIds, getEventsState);
 export const getSelectedEvent = compose(fromEvents.getSelectedEvent, getEventsState);
 export const getSelectedEventMetadata = compose(fromEvents.getSelectedEventMetadata, getEventsState);
+
+export function getMapState(state: Observable<State>) {
+  return state.select(state => state.map);
+}
+
+export const getSelectedMapPoint = compose(fromMap.getSelectedMapPoint, getMapState);
+
+export function getPlacesState(state: Observable<State>) {
+  return state.select(state => state.places);
+}
+
+export const getSelectedPlace = compose(fromPlaces.getSelectedPlace, getPlacesState);

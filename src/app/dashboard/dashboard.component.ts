@@ -10,9 +10,12 @@ import {
   AuthService,
   ClearSelectedMapPointAction,
   LogoutAction,
+  ReverseGeocodePointAction,
   SelectMapPointAction,
+  SelectPlaceAction,
   SetMapCenterAction,
-  State
+  State,
+  getSelectedPlace
 } from '../core';
 
 @Component({
@@ -27,6 +30,7 @@ export class DashboardComponent implements OnInit {
   private mapCenter: any = { longitude: -105.0, latitude: 39.0 };
   private mapZoom: number = 5;
   private selectedMapPoint: any;
+  private selectedPlace: any;
 
   // Subscriptions
   private authSub: Subscription;
@@ -53,6 +57,8 @@ export class DashboardComponent implements OnInit {
     this.mapSub = this.store
       .select('map')
       .subscribe((map: any) => this.selectedMapPoint = map.selectedPoint);
+
+    this.selectedPlace = this.store.let(getSelectedPlace);
   }
 
   ngOnDestroy() {
@@ -96,8 +102,13 @@ export class DashboardComponent implements OnInit {
   }
 
   private toggleSelectedMapPoint(lngLat) {
-    const action = this.selectedMapPoint ? new ClearSelectedMapPointAction() : new SelectMapPointAction(lngLat);
-    this.store.dispatch(action);
+    if (this.selectedMapPoint) {
+      this.clearSelectedMapPoint();
+    } else {
+      this.store.dispatch(new SelectMapPointAction(lngLat));
+      this.store.dispatch(new ReverseGeocodePointAction(lngLat));
+      this.store.dispatch(new SelectPlaceAction(lngLat));
+    }
   }
 
 }

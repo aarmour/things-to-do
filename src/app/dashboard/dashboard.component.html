@@ -18,7 +18,14 @@
     (moveend)="onMapMoveend($event)"
   >
     <mb-info-popup [open]="!!selectedMapPoint" (close)="onCloseInfoPopup()">
-      <mb-info-popup-content>{{selectedMapPoint}}</mb-info-popup-content>
+      <mb-info-popup-content>
+        <ttd-place-info-popup-container
+          *ngIf="selectedPlace | async"
+          [place]="selectedPlace | async"
+          [point]="selectedMapPoint"
+        >
+        </ttd-place-info-popup-container>
+      </mb-info-popup-content>
     </mb-info-popup>
   </mb-map>
 </div>
