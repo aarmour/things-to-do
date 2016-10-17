@@ -1,0 +1,7 @@
+<ttd-spinner ttd-spinner-sm *ngIf="place.isLoading"></ttd-spinner>
+<div *ngIf="!place.isLoading" class="place-name">
+  {{place.placeName}}
+</div>
+<div *ngIf="point" class="lat-lng">
+  <small>{{point.lat | number:'1.5-5'}}, {{point.lng | number:'1.5-5'}}</small>
+</div>

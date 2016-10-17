@@ -1,0 +1,10 @@
+@import '../../../../scss/colors';
+@import '../../../../scss/utils';
+
+.place-name {
+  @include truncate-text;
+}
+
+.lat-lng {
+  color: $ttd-gray-50;
+}

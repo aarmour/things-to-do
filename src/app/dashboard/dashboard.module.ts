@@ -13,6 +13,7 @@ import {
 import { EventSummaryComponent } from './events/shared/event-summary/event-summary.component';
 import { SharedModule } from '../shared';
 import { ToolbarComponent } from './shared';
+import { PlaceInfoPopupContainerComponent } from './shared/place-info-popup-container/place-info-popup-container.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { ToolbarComponent } from './shared';
     EventListComponent,
     EventSearchComponent,
     EventSummaryComponent,
+    PlaceInfoPopupContainerComponent,
     ToolbarComponent,
   ]
 })

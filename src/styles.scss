@@ -1,6 +1,11 @@
 @import 'node_modules/normalize.css/normalize';
 
+// The global styles exist in a context that is separate from components.
+// Components that rely on variables and mixins must import them directly.
+
 @import 'scss/variables';
+@import 'scss/utils';
 @import 'scss/reset';
 @import 'scss/base';
+@import 'scss/colors';
 @import 'scss/leaflet';
