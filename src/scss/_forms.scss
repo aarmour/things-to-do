@@ -1,0 +1,48 @@
+$ttd-form-control-border-color: $ttd-gray-30;
+$ttd-form-control-focus-color: $ttd-gray-60;
+
+.ttd-form input[type="text"],
+.ttd-form input[type="password"],
+.ttd-form input[type="email"],
+.ttd-form input[type="url"],
+.ttd-form input[type="date"],
+.ttd-form input[type="month"],
+.ttd-form input[type="time"],
+.ttd-form input[type="datetime"],
+.ttd-form input[type="datetime-local"],
+.ttd-form input[type="week"],
+.ttd-form input[type="number"],
+.ttd-form input[type="search"],
+.ttd-form input[type="tel"],
+.ttd-form input[type="color"],
+.ttd-form select,
+.ttd-form textarea {
+  display: inline-block;
+  width: 100%;
+  border: 1px solid $ttd-form-control-border-color;
+  vertical-align: middle;
+
+  &:focus {
+    outline: 0;
+    border-color: $ttd-form-control-focus-color;
+  }
+}
+
+.ttd-form-stacked input[type="text"],
+.ttd-form-stacked input[type="password"],
+.ttd-form-stacked input[type="email"],
+.ttd-form-stacked input[type="url"],
+.ttd-form-stacked input[type="date"],
+.ttd-form-stacked input[type="month"],
+.ttd-form-stacked input[type="time"],
+.ttd-form-stacked input[type="datetime"],
+.ttd-form-stacked input[type="datetime-local"],
+.ttd-form-stacked input[type="week"],
+.ttd-form-stacked input[type="number"],
+.ttd-form-stacked input[type="search"],
+.ttd-form-stacked input[type="tel"],
+.ttd-form-stacked input[type="color"],
+.ttd-form-stacked select,
+.ttd-form-stacked textarea {
+  display: block;
+}
