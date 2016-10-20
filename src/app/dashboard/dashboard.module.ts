@@ -14,6 +14,7 @@ import { EventSummaryComponent } from './events/shared/event-summary/event-summa
 import { SharedModule } from '../shared';
 import { ToolbarComponent } from './shared';
 import { PlaceInfoPopupContainerComponent } from './shared/place-info-popup-container/place-info-popup-container.component';
+import { EventFormComponent } from './events/shared/event-form/event-form.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { PlaceInfoPopupContainerComponent } from './shared/place-info-popup-cont
     DashboardComponent,
     EventCreateComponent,
     EventDetailComponent,
+    EventFormComponent,
     EventListComponent,
     EventSearchComponent,
     EventSummaryComponent,
