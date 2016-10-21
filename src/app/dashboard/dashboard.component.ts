@@ -92,13 +92,17 @@ export class DashboardComponent implements OnInit {
       z: mapProperties.zoom.toFixed(2)
     };
 
-    const route = this.route.snapshot.firstChild.url.map(url => url.path);
+    const route = this.flatten(this.route.snapshot.firstChild.url.map(url => [url.path, url.parameters]));
 
     this.router.navigate(['.', newParams, ...route]);
   }
 
   private clearSelectedMapPoint() {
     this.store.dispatch(new ClearSelectedMapPointAction());
+  }
+
+  private flatten(value) {
+    return [].concat.apply([], value);
   }
 
   private toggleSelectedMapPoint(lngLat) {
