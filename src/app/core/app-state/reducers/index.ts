@@ -4,7 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { compose } from '@ngrx/core/compose';
 import { combineReducers } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { storeLogger } from "ngrx-store-logger";
 
+import { environment } from '../../../../environments/environment';
 import { AuthState, auth } from './auth.reducer';
 import { EventsState, events } from './events.reducer';
 import * as fromEvents from './events.reducer';
@@ -27,11 +29,11 @@ const reducers = {
   places
 };
 
-// TODO: create separate development and production reducers
-const reducer = compose(localStorageSync(['auth'], true), combineReducers)(reducers);
+const developmentReducer = compose(storeLogger(), localStorageSync(['auth'], true), combineReducers)(reducers);
+const productionReducer = compose(localStorageSync(['auth'], true), combineReducers)(reducers);
 
 export function rootReducer(state: any, action: any) {
-  return reducer(state, action);
+  return environment.production ? productionReducer(state, action) : developmentReducer(state, action);
 }
 
 /**
