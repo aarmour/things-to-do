@@ -3,10 +3,10 @@
 <section>
   <h1>Autocomplete</h1>
   <ttd-autocomplete
-    [ngModel]="autocompleteSearchValue"
-    (ngModelChange)="onSearchValueChange($event)"
-    [items]="autocompleteItems"
-    (selectedItemChange)="onAutocompleteSelectedItemChange($event)"
+  [ngModel]="autocompleteSearchValue"
+  (ngModelChange)="onSearchValueChange($event)"
+  [items]="autocompleteItems"
+  (selectedItemChange)="onAutocompleteSelectedItemChange($event)"
   >
     <template #item let-item="item">{{item}}</template>
   </ttd-autocomplete>
@@ -14,7 +14,19 @@
 </section>
 
 <section>
-  <h1>Icons</h1>
+  <h1>Button</h1>
+  <button ttd-button>Button</button>
+  <button ttd-button disabled>Disabled</button>
+  <button ttd-button>
+    <ttd-icon name="star"></ttd-icon>
+  </button>
+  <button ttd-icon-button>
+    <ttd-icon name="heart"></ttd-icon>
+  </button>
+</section>
+
+<section>
+  <h1>Icon</h1>
   <div class="icons-container">
     <div class="icon-container" *ngFor="let icon of icons" title="{{icon}}">
       <ttd-icon [name]="icon"></ttd-icon>

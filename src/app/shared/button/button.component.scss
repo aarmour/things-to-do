@@ -1,0 +1,89 @@
+@import '../../../scss/colors';
+
+$ttd-button-height: 36px;
+$ttd-button-padding-x: 1em;
+$ttd-button-padding-y: 0.5em;
+$ttd-button-color: #000000;
+$ttd-button-bg: $ttd-gray-20;
+$ttd-button-font-size: 0.9em;
+
+$ttd-icon-button-width: 36px;
+$ttd-icon-button-active-bg: $ttd-gray-20;
+
+@mixin button-core {
+  display: inline-block;
+  zoom: 1;
+  line-height: normal;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  // Firefox: remove inner focus border
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+}
+
+@mixin make-button($height, $padding-x, $padding-y, $color, $bg, $font-size) {
+  padding: $padding-y $padding-x;
+  height: $height;
+  color: $color;
+  background-color: $bg;
+  border: none rgba(0, 0, 0, 0);
+  font-family: inherit;
+  font-size: $font-size;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:active {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  &[disabled] {
+    color: lighten($color, 80%);
+  }
+}
+
+:host[ttd-button] {
+  @include button-core;
+  @include make-button(
+    $ttd-button-height,
+    $ttd-button-padding-x,
+    $ttd-button-padding-y,
+    $ttd-button-color,
+    $ttd-button-bg,
+    $ttd-button-font-size
+  );
+}
+
+:host[ttd-icon-button] {
+  @include button-core;
+  @include make-button(
+    $ttd-button-height,
+    0,
+    0,
+    $ttd-button-color,
+    transparent,
+    $ttd-button-font-size
+  );
+
+  width: $ttd-icon-button-width;
+  padding: 0;
+  border-radius: 50%;
+
+  &:active {
+    box-shadow: none;
+    background: $ttd-icon-button-active-bg;
+  }
+}
