@@ -45,7 +45,11 @@ export class InfoPopupComponent extends ControlComponent {
 
     const infoPopup = this.infoPopup = new InfoPopup({ open: this.open, position: this.position });
 
-    infoPopup.on('close', () => this.close.next({}));
+    infoPopup.on('close', () => {
+      if (this.open) {
+        this.close.next({});
+      }
+    });
 
     this.map.addControl(infoPopup);
     this.setContent();

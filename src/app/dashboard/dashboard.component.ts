@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
   Router
@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private ref: ChangeDetectorRef,
     private route: ActivatedRoute,
     private router: Router,
     private store: Store<State>
@@ -46,6 +47,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe((params: any) => {
+      this.clearSelectedMapPoint();
+
       if (params.x && params.y) {
         this.store.dispatch(new SetMapCenterAction({
           lng: +params.x,
@@ -65,6 +68,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((map: any) => {
         this.selectedMapPoint = map.selectedPoint;
         this.mapCenter = map.center;
+        this.ref.detectChanges();
       });
 
     this.selectedPlace = this.store.let(getSelectedPlace);
@@ -92,9 +96,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onMapMoveend(mapProperties) {
-    this.clearSelectedMapPoint();
-    this.store.dispatch(new SetMapCenterAction(mapProperties.center));
-
     const newParams = {
       x: mapProperties.center.lng,
       y: mapProperties.center.lat,
