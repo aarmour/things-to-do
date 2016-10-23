@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Event } from '../../../../core/app-state/models/event.model';
 
@@ -12,6 +12,7 @@ export class EventFormComponent implements OnInit {
   private model: Event;
 
   @Input() event: Event;
+  @Output() createEvent: EventEmitter<Event> = new EventEmitter<Event>();
 
   constructor() { }
 
@@ -23,6 +24,6 @@ export class EventFormComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.createEvent.emit(this.model);
   }
 }

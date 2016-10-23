@@ -11,8 +11,8 @@
 <div class="content">
   <mb-map
     [mbStyle]="'mapbox://styles/mapbox/streets-v9'"
-    [longitude]="mapCenter.longitude"
-    [latitude]="mapCenter.latitude"
+    [longitude]="mapCenter.lng"
+    [latitude]="mapCenter.lat"
     [zoom]="mapZoom"
     (mbClick)="onMapClick($event)"
     (moveend)="onMapMoveend($event)"

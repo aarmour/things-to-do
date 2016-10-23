@@ -46,7 +46,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe((params: any) => {
-      if (params.x && params.y) this.mapCenter = { longitude: +params.x, latitude: +params.y };
+      if (params.x && params.y) {
+        this.store.dispatch(new SetMapCenterAction({
+          lng: +params.x,
+          lat: +params.y
+        } as mapboxgl.LngLat));
+      }
+
       if (params.z) this.mapZoom = +params.z;
     });
 
@@ -56,7 +62,10 @@ export class DashboardComponent implements OnInit {
 
     this.mapSub = this.store
       .select('map')
-      .subscribe((map: any) => this.selectedMapPoint = map.selectedPoint);
+      .subscribe((map: any) => {
+        this.selectedMapPoint = map.selectedPoint;
+        this.mapCenter = map.center;
+      });
 
     this.selectedPlace = this.store.let(getSelectedPlace);
   }

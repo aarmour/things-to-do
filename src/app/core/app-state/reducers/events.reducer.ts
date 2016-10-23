@@ -4,18 +4,19 @@ import { Observable } from 'rxjs/Observable';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 
 import {
-  FETCH_EVENT,
-  FETCH_EVENT_FAIL,
-  FETCH_EVENT_SUCCESS,
+  CREATE_EVENT, CREATE_EVENT_SUCCESS, CREATE_EVENT_FAIL,
+  FETCH_EVENT, FETCH_EVENT_FAIL, FETCH_EVENT_SUCCESS,
   SELECT_EVENT_SUCCESS,
-  FetchEventAction,
-  FetchEventFailAction,
-  FetchEventSuccessAction,
+  CreateEventAction, CreateEventFailAction, CreateEventSuccessAction,
+  FetchEventAction, FetchEventFailAction, FetchEventSuccessAction,
   SelectEventSuccessAction
 } from '../actions';
 import { Event } from '../models/event.model';
 
 type Action =
+  CreateEventAction |
+  CreateEventSuccessAction |
+  CreateEventFailAction |
   FetchEventAction |
   FetchEventFailAction |
   FetchEventSuccessAction |
@@ -30,20 +31,23 @@ export interface EventsState {
   ids: Set<string>,
   entities: { [id: string]: Event },
   entityMetadata: { [id: string]: EventMetadataState },
-  selectedEventId: string | null
+  selectedEventId: string | null,
+  newEventId: string | null
 }
 
 const initialState = {
   ids: new Set<string>(),
   entities: {},
   entityMetadata: {},
-  selectedEventId: null
+  selectedEventId: null,
+  newEventId: null
 };
 
 export function events(state = initialState, action: Action) {
   switch(action.type) {
+
     case FETCH_EVENT: {
-      const id = action.payload;
+      const id = action.payload as string;
 
       const ids = new Set(state.ids);
       ids.add(id);
@@ -57,12 +61,13 @@ export function events(state = initialState, action: Action) {
         ids,
         entities: state.entities,
         entityMetadata: Object.assign({}, state.entityMetadata, { [id]: entityMetadata }),
-        selectedEventId: state.selectedEventId
+        selectedEventId: state.selectedEventId,
+        newEventId: state.newEventId
       };
     }
 
-    case FETCH_EVENT_SUCCESS: {
-      const newId = action.payload.id;
+    case CREATE_EVENT_SUCCESS: {
+      const newId = action.payload.displayId;
 
       const entityMetadata = {
         isLoading: false,
@@ -73,7 +78,25 @@ export function events(state = initialState, action: Action) {
         ids: state.ids,
         entities: Object.assign({}, state.entities, { [newId]: action.payload }),
         entityMetadata: Object.assign({}, state.entityMetadata, { [newId]: entityMetadata }),
-        selectedEventId: state.selectedEventId
+        selectedEventId: state.selectedEventId,
+        newEventId: newId
+      };
+    }
+
+    case FETCH_EVENT_SUCCESS: {
+      const newId = action.payload.displayId;
+
+      const entityMetadata = {
+        isLoading: false,
+        fetchFailed: false
+      };
+
+      return {
+        ids: state.ids,
+        entities: Object.assign({}, state.entities, { [newId]: action.payload }),
+        entityMetadata: Object.assign({}, state.entityMetadata, { [newId]: entityMetadata }),
+        selectedEventId: state.selectedEventId,
+        newEventId: state.newEventId
       };
     }
 
@@ -87,7 +110,8 @@ export function events(state = initialState, action: Action) {
         ids: state.ids,
         entities: state.entities,
         entityMetadata: Object.assign({}, state.entityMetadata, { [action.payload]: entityMetadata }),
-        selectedEventId: state.selectedEventId
+        selectedEventId: state.selectedEventId,
+        newEventId: state.newEventId
       };
     }
 
@@ -96,7 +120,8 @@ export function events(state = initialState, action: Action) {
         ids: state.ids,
         entities: state.entities,
         entityMetadata: state.entityMetadata,
-        selectedEventId: action.payload
+        selectedEventId: action.payload,
+        newEventId: state.newEventId
       };
     }
 
@@ -120,6 +145,10 @@ export function getEventEntityMetadata(state: Observable<EventsState>) {
 
 export function getEventIds(state: Observable<EventsState>) {
   return state.select(state => state.ids);
+}
+
+export function getNewEventId(state: Observable<EventsState>) {
+  return state.select(state => state.newEventId);
 }
 
 export function getSelectedEventId(state: Observable<EventsState>) {

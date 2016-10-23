@@ -1,6 +1,7 @@
 'use strict';
 
 const { notFound } = require('boom');
+const isUUID = require('is-uuid').anyNonNil;
 
 const DEFAULT_CRS = {
   type: 'name',
@@ -22,8 +23,9 @@ exports.create = function(request, reply) {
 
 exports.read = function(request, reply) {
   const { Event } = this.models;
+  const idProp = isUUID(request.params.id) ? 'id' : 'display_id';
 
-  Event.findById(request.params.id)
+  Event.findOne({ where: { [idProp]: request.params.id } })
     .then((event) => {
       if (event) reply(null, event);
       else reply(notFound());

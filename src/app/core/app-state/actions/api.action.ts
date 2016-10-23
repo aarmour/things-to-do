@@ -4,7 +4,7 @@ import { type } from '../util';
 export interface ApiPayload {
   method: 'get' | 'post' | 'put' | 'delete',
   path: string,
-  data?: any,
+  body?: any,
   SuccessAction: any,
   FailAction: any
 }
