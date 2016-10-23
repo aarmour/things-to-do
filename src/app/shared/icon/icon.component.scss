@@ -2,7 +2,11 @@ $ttd-icon-default-width: 16px;
 $ttd-icon-default-height: $ttd-icon-default-width;
 
 .icon {
-  display: inline-block;
+  display: block;
+  margin: auto;
   width: $ttd-icon-default-width;
   height: $ttd-icon-default-height;
+  min-width: $ttd-icon-default-width;
+  min-height: $ttd-icon-default-height;
+  vertical-align: middle;
 }
