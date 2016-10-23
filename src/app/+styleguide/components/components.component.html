@@ -14,6 +14,15 @@
 </section>
 
 <section>
+  <h1>Icons</h1>
+  <div class="icons-container">
+    <div class="icon-container" *ngFor="let icon of icons" title="{{icon}}">
+      <ttd-icon [name]="icon"></ttd-icon>
+    </div>
+  </div>
+</section>
+
+<section>
   <h1>Spinner</h1>
   <ttd-spinner></ttd-spinner>
   <ttd-spinner ttd-spinner-sm></ttd-spinner>

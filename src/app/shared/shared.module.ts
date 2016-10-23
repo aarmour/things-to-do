@@ -12,6 +12,7 @@ import {
   MapComponent
 } from './mapbox';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { IconComponent } from './icon/icon.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
   declarations: [
     AutocompleteComponent,
     GeocoderComponent,
+    IconComponent,
     InfoPopupContentComponent,
     InfoPopupComponent,
     MapComponent,
@@ -33,6 +35,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
   exports: [
     AutocompleteComponent,
     GeocoderComponent,
+    IconComponent,
     InfoPopupContentComponent,
     InfoPopupComponent,
     MapComponent,

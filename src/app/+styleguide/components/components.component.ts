@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+import { icons } from './icons';
+
 const FRUITS = [
   'Apple',
   'Banana',
@@ -23,6 +25,7 @@ export class ComponentsComponent implements OnInit {
   private autocompleteSearchValue: string = '';
   private autocompleteItems = new BehaviorSubject<string[]>(FRUITS);
   private autocompleteSelectedItem: string;
+  private icons: string[] = icons;
 
   constructor() {
   }
