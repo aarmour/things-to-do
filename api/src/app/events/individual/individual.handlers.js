@@ -2,8 +2,18 @@
 
 const { notFound } = require('boom');
 
+const DEFAULT_CRS = {
+  type: 'name',
+  properties: {
+    name: 'EPSG:4326'
+  }
+};
+
 exports.create = function(request, reply) {
   const { Event } = this.models;
+  const event = request.payload;
+
+  event.center_geometry.crs = DEFAULT_CRS;
 
   Event.create(request.payload)
     .then((event) => reply(null, event))
