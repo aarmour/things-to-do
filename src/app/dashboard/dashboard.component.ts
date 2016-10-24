@@ -13,7 +13,7 @@ import {
   ReverseGeocodePointAction,
   SelectMapPointAction,
   SelectPlaceAction,
-  SetMapCenterAction,
+  SetMapViewAction,
   State,
   getSelectedPlace
 } from '../core';
@@ -49,14 +49,14 @@ export class DashboardComponent implements OnInit {
     this.paramsSub = this.route.params.subscribe((params: any) => {
       this.clearSelectedMapPoint();
 
-      if (params.x && params.y) {
-        this.store.dispatch(new SetMapCenterAction({
-          lng: +params.x,
-          lat: +params.y
-        } as mapboxgl.LngLat));
+      if (params.x && params.y && params.z) {
+        this.store.dispatch(new SetMapViewAction({
+          center: { lng: +params.x, lat: +params.y } as mapboxgl.LngLat,
+          zoom: +params.z
+        }));
       }
 
-      if (params.z) this.mapZoom = +params.z;
+      // if (params.z) this.mapZoom = +params.z;
     });
 
     this.authSub = this.store
@@ -68,6 +68,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((map: any) => {
         this.selectedMapPoint = map.selectedPoint;
         this.mapCenter = map.center;
+        this.mapZoom = map.zoom;
         this.ref.detectChanges();
       });
 
