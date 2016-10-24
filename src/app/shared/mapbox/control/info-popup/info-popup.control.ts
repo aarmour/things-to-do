@@ -57,5 +57,15 @@ InfoPopup.prototype = util.inherit(Control, {
   html: function(html) {
     if (!this._content) throw new Error('The InfoPopup control must be added to the map before setting the content!');
     this._content.innerHTML = html;
+  },
+
+  element: function(el) {
+    if (!el) return;
+    if (this._contentChild) {
+      this._content.removeChild(this._contentChild);
+    }
+
+    this._contentChild = el;
+    this._content.appendChild(el);
   }
 });

@@ -59,7 +59,7 @@ export class InfoPopupComponent extends ControlComponent {
     if (!this.content) return;
     if (!this.infoPopup) return;
 
-    this.infoPopup.html(this.content.nativeElement.children[0].innerHTML);
+    this.infoPopup.element(this.content.nativeElement.children[0]);
   }
 
 }

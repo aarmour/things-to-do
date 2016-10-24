@@ -5,3 +5,6 @@
 <div *ngIf="point" class="lat-lng">
   <small>{{point.lat | number:'1.5-5'}}, {{point.lng | number:'1.5-5'}}</small>
 </div>
+<button ttd-icon-button (click)="onCreateEventClick()" [disabled]="place.isLoading">
+  <ttd-icon name="plus-circle"></ttd-icon>
+</button>

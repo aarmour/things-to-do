@@ -84,6 +84,10 @@ export class DashboardComponent implements OnInit {
     this.clearSelectedMapPoint();
   }
 
+  onCreateEvent(placeName: string, point: mapboxgl.LngLat) {
+    this.router.navigate(['/dashboard/events/new', { place: placeName, x: point.lng, y: point.lat }]);
+  }
+
   onLogin() {
     this.authService.login();
   }

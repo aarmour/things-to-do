@@ -23,6 +23,7 @@
           *ngIf="selectedPlace | async"
           [place]="selectedPlace | async"
           [point]="selectedMapPoint"
+          (createEvent)="onCreateEvent($event.placeName, $event.point)"
         >
         </ttd-place-info-popup-container>
       </mb-info-popup-content>
