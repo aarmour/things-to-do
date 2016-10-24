@@ -8,7 +8,5 @@
   <label>Description</label>
   <textarea name="description" [(ngModel)]="model.description" required></textarea>
 
-  <div>{{model | json}}</div>
-
-  <button type="submit" [disabled]="!eventForm.form.valid">Create Event</button>
+  <button ttd-button type="submit" [disabled]="!eventForm.form.valid">Create Event</button>
 </form>

@@ -55,8 +55,6 @@ export class DashboardComponent implements OnInit {
           zoom: +params.z
         }));
       }
-
-      // if (params.z) this.mapZoom = +params.z;
     });
 
     this.authSub = this.store
