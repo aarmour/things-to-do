@@ -24,8 +24,8 @@ export interface MapState {
 }
 
 const initialState = {
-  center: new LngLat(-105.0, 38.0),
-  zoom: 13,
+  center: new LngLat(0, 0),
+  zoom: 1,
   selectedPoint: null
 };
 
