@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
 
     const route = this.flatten(this.route.snapshot.firstChild.url.map(url => [url.path, url.parameters]));
 
-    this.router.navigate(['.', newParams, ...route]);
+    this.router.navigate(['.', newParams, ...route], { replaceUrl: true });
   }
 
   private clearSelectedMapPoint() {
