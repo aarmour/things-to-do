@@ -25,19 +25,31 @@ const dashboardRoutes: Routes = [
       },
       {
         path: 'events',
-        component: EventListComponent
+        component: EventListComponent,
+        data: {
+          title: 'Events'
+        }
       },
       {
         path: 'events/new',
-        component: EventCreateComponent
+        component: EventCreateComponent,
+        data: {
+          title: 'Create a new event'
+        }
       },
       {
         path: 'events/search',
-        component: EventSearchComponent
+        component: EventSearchComponent,
+        data: {
+          title: 'Find an event'
+        }
       },
       {
         path: 'events/:id',
-        component: EventDetailComponent
+        component: EventDetailComponent,
+        data: {
+          title: 'Details'
+        }
       }
     ]
   }
