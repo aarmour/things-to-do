@@ -19,7 +19,6 @@ export class PlaceInfoPopupContainerComponent implements OnInit {
   }
 
   onCreateEventClick() {
-    console.log('onCreateEventClick');
     this.createEvent.emit({ placeName: this.place.placeName, point: this.point });
   }
 
