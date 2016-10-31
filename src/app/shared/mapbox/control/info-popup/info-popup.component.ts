@@ -4,7 +4,8 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  Output
+  Output,
+  forwardRef
 } from '@angular/core';
 
 import { ControlComponent } from '../control.component';
@@ -13,7 +14,8 @@ import { InfoPopup } from './info-popup.control';
 @Component({
   selector: 'mb-info-popup',
   templateUrl: 'info-popup.component.html',
-  styleUrls: ['info-popup.component.scss']
+  styleUrls: ['info-popup.component.scss'],
+  providers: [{ provide: ControlComponent, useExisting: forwardRef(() => InfoPopupComponent) }]
 })
 export class InfoPopupComponent extends ControlComponent {
 

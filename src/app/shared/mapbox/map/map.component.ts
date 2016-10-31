@@ -8,7 +8,7 @@ import {
   Type
 } from '@angular/core';
 
-import { InfoPopupComponent } from '../control';
+import { ControlComponent } from '../control';
 
 declare const mapboxgl: any;
 
@@ -36,7 +36,7 @@ export class MapComponent {
   @Output('mbClick') click: EventEmitter<any> = new EventEmitter();
   @Output() moveend: EventEmitter<any> = new EventEmitter();
 
-  @ContentChildren(InfoPopupComponent) controls: QueryList<InfoPopupComponent>;
+  @ContentChildren(ControlComponent) controls: QueryList<ControlComponent>;
 
   constructor() {
     this.containerId = `mb-map-${MapComponent.id++}`;
