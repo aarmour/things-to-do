@@ -26,6 +26,7 @@ import {
 export class DashboardComponent implements OnInit {
 
   private authenticated: boolean = false;
+  private userProfile: any;
   private infoPopupOpen: boolean = false;
   private mapCenter: any = { longitude: -105.0, latitude: 39.0 };
   private mapZoom: number = 5;
@@ -59,7 +60,10 @@ export class DashboardComponent implements OnInit {
 
     this.authSub = this.store
       .select('auth')
-      .subscribe((auth: any) => this.authenticated = auth.authenticated);
+      .subscribe((auth: any) => {
+        this.authenticated = auth.authenticated;
+        this.userProfile = auth.authenticated ? auth.user.profile : undefined;
+      });
 
     this.mapSub = this.store
       .select('map')

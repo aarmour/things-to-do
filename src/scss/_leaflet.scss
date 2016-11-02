@@ -30,8 +30,8 @@
   }
 }
 
-// InfoPopup
-// ---------
+// InfoPopup Control
+// -----------------
 
 $mapboxgl-ctrl-info-popup-base-width: 200px;
 $mapboxgl-ctrl-info-popup-max-width: 380px;
@@ -59,4 +59,14 @@ $mapboxgl-ctrl-info-popup-max-width: 380px;
 .mapboxgl-ctrl-info-popup-content {
   margin-right: 18px;
   padding: 12px;
+}
+
+// User Control
+// ------------
+
+.mapboxgl-ctrl-user {
+
+  > button {
+    width: 60px;
+  }
 }

@@ -14,6 +14,7 @@ import {
 import { SpinnerComponent } from './spinner/spinner.component';
 import { IconComponent } from './icon/icon.component';
 import { ButtonComponent } from './button/button.component';
+import { UserComponent } from './mapbox/control/user/user.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { ButtonComponent } from './button/button.component';
     InfoPopupContentComponent,
     InfoPopupComponent,
     MapComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    UserComponent
   ],
   providers: [
     GeocoderService
@@ -42,7 +44,8 @@ import { ButtonComponent } from './button/button.component';
     InfoPopupContentComponent,
     InfoPopupComponent,
     MapComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    UserComponent
   ]
 })
 export class SharedModule { }

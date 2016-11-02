@@ -1,7 +1,5 @@
 <aside class="sidebar">
   <ttd-toolbar>
-    <button (click)="onLogin()" *ngIf="!authenticated">Log In</button>
-    <button (click)="onLogout()" *ngIf="authenticated">Sign Out</button>
     <a [routerLink]="['./events']">Home</a>
     <a [routerLink]="['./events/new']" routerLinkActive="active">New event</a>
     <a [routerLink]="['./events/search']" routerLinkActive="active">Find an event</a>
@@ -17,6 +15,7 @@
     (mbClick)="onMapClick($event)"
     (moveend)="onMapMoveend($event)"
   >
+    <mb-user [userProfile]="userProfile" (login)="onLogin()" (logout)="onLogout()"></mb-user>
     <mb-info-popup [open]="!!selectedMapPoint" (close)="onCloseInfoPopup()">
       <mb-info-popup-content>
         <ttd-place-info-popup-container
