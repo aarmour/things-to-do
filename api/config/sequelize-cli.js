@@ -10,8 +10,6 @@ module.exports = {
   }
 };
 
-console.log(module.exports[config.env]);
-
 function formatConnectionString(options) {
   const { username, password, host, port, name } = options;
   return `postgres://${username}${password ? `:${password}` : ''}@${host}${port ? `:${port}` : ''}/${name}`;
