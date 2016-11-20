@@ -1,10 +1,4 @@
-interface SetMapFunc {
-  (map: any): void
-}
-
-export interface SetMap {
-  setMap: SetMapFunc
-}
+import { SetMap } from '../set-map';
 
 export abstract class ControlComponent implements SetMap {
 

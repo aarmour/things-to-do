@@ -15,6 +15,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { IconComponent } from './icon/icon.component';
 import { ButtonComponent } from './button/button.component';
 import { UserComponent } from './mapbox/control/user/user.component';
+import { GeojsonSourceComponent } from './mapbox/geojson-source/geojson-source.component';
+import { LayerComponent } from './mapbox/layer/layer.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { UserComponent } from './mapbox/control/user/user.component';
     InfoPopupComponent,
     MapComponent,
     SpinnerComponent,
-    UserComponent
+    UserComponent,
+    GeojsonSourceComponent,
+    LayerComponent
   ],
   providers: [
     GeocoderService
@@ -40,9 +44,11 @@ import { UserComponent } from './mapbox/control/user/user.component';
     AutocompleteComponent,
     ButtonComponent,
     GeocoderComponent,
+    GeojsonSourceComponent,
     IconComponent,
     InfoPopupContentComponent,
     InfoPopupComponent,
+    LayerComponent,
     MapComponent,
     SpinnerComponent,
     UserComponent
@@ -50,8 +56,7 @@ import { UserComponent } from './mapbox/control/user/user.component';
 })
 export class SharedModule { }
 
-// TODO: fix once mapbox-gl supports SystemJS
-// import mapboxgl = require('mapbox-gl');
+// TODO: fix mapbox-gl TypeScript integration
 declare const mapboxgl: any;
 
 export function setMapboxAccessToken(token: string) {

@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 
 import { ControlComponent } from '../control';
+import { LayerComponent } from '../layer/layer.component';
 
 declare const mapboxgl: any;
 
@@ -37,6 +38,7 @@ export class MapComponent {
   @Output() moveend: EventEmitter<any> = new EventEmitter();
 
   @ContentChildren(ControlComponent) controls: QueryList<ControlComponent>;
+  @ContentChildren(LayerComponent) layers: QueryList<LayerComponent>;
 
   constructor() {
     this.containerId = `mb-map-${MapComponent.id++}`;
@@ -57,11 +59,17 @@ export class MapComponent {
     this.map = this.createMap();
     this.registerEventHandlers();
     this.addControls();
+    this.addLayers();
   }
 
   private addControls() {
     if (!this.controls) return;
     this.controls.forEach((control) => control.setMap(this.map));
+  }
+
+  private addLayers() {
+    if (!this.layers) return;
+    this.layers.forEach((layer) => layer.setMap(this.map));
   }
 
   private createMap() {

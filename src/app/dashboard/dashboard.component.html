@@ -27,5 +27,15 @@
         </ttd-place-info-popup-container>
       </mb-info-popup-content>
     </mb-info-popup>
+    <mb-layer
+      layerId="selected-point"
+      layerType="circle"
+    >
+      <mb-geojson-source
+        sourceId="selected-point-source"
+        [sourceData]="selectedMapPointGeoJson"
+      >
+      </mb-geojson-source>
+    </mb-layer>
   </mb-map>
 </div>

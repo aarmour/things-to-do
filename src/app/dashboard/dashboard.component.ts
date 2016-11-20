@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
   private mapCenter: any = { longitude: -105.0, latitude: 39.0 };
   private mapZoom: number = 5;
   private selectedMapPoint: any;
+  private selectedMapPointGeoJson: any;
   private selectedPlace: any;
 
   // Subscriptions
@@ -69,6 +70,7 @@ export class DashboardComponent implements OnInit {
       .select('map')
       .subscribe((map: any) => {
         this.selectedMapPoint = map.selectedPoint;
+        this.selectedMapPointGeoJson = this.getFeatureCollection(this.toGeoJson(map.selectedPoint));
         this.mapCenter = map.center;
         this.mapZoom = map.zoom;
         this.ref.detectChanges();
@@ -120,6 +122,19 @@ export class DashboardComponent implements OnInit {
 
   private flatten(value) {
     return [].concat.apply([], value);
+  }
+
+  private getFeatureCollection(geometry) {
+    return { type: 'FeatureCollection', features: this.getFeatures(geometry) };
+  }
+
+  private getFeatures(geometry) {
+    return geometry ? [{ type: 'Feature', geometry }] : [];
+  }
+
+  private toGeoJson(coords) {
+    if (!coords) return;
+    return { type: 'Point', coordinates: [coords.lng, coords.lat] };
   }
 
   private toggleSelectedMapPoint(lngLat) {
