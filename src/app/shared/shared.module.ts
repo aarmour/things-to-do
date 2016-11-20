@@ -15,8 +15,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { IconComponent } from './icon/icon.component';
 import { ButtonComponent } from './button/button.component';
 import { UserComponent } from './mapbox/control/user/user.component';
-import { GeojsonSourceComponent } from './mapbox/geojson-source/geojson-source.component';
-import { LayerComponent } from './mapbox/layer/layer.component';
+import { GeojsonSourceComponent } from './mapbox/map/geojson-source.component';
+import { LayerComponent } from './mapbox/map/layer.component';
 
 @NgModule({
   imports: [

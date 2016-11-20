@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { ControlComponent } from '../control';
-import { LayerComponent } from '../layer/layer.component';
+import { LayerComponent } from './layer.component';
 
 declare const mapboxgl: any;
 

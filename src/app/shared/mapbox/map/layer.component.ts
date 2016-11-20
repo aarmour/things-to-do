@@ -1,6 +1,6 @@
 import { Component, ContentChild, Input, QueryList } from '@angular/core';
 
-import { GeojsonSourceComponent } from '../geojson-source/geojson-source.component';
+import { GeojsonSourceComponent } from './geojson-source.component';
 import { SetMap } from '../set-map';
 
 @Component({
